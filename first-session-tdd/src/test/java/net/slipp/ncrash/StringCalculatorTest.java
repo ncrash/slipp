@@ -12,7 +12,7 @@ public class StringCalculatorTest {
 	public void 빈_문자열을_입력할_경우_0을_반환해야_한다() throws Exception {
 		StringCalculator calculator = new StringCalculator();
 		
-		assertThat(calculator.calc(""), equalTo(0));
+		assertThat(calculator.add(""), equalTo(0));
 	}
 
 }
