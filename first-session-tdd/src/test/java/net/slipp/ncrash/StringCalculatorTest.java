@@ -36,4 +36,9 @@ public class StringCalculatorTest {
 	public void 세_개_이상의_숫자를_컴마_구분자로_입력할_경우_모든_숫_자의_합을_반환한다() throws Exception {
 		assertThat(calculator.add("1,2,3"), equalTo(6));
 	}
+	
+	@Test
+	public void 구분자를_컴마_이외에_New_Line을_사용할_수_있다() throws Exception {
+		assertThat(calculator.add("1,2\n3"), equalTo(6));
+	}
 }
