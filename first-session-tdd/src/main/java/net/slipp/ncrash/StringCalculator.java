@@ -2,9 +2,15 @@ package net.slipp.ncrash;
 
 public class StringCalculator {
 
-	public int add(String string) {
+	public int add(String text) {
 		// TODO Auto-generated method stub
-		return 0;
+		if (text.isEmpty()) {
+			return 0;
+		}
+		
+		int number = Integer.parseInt(text);
+		
+		return number;
 	}
 
 }
