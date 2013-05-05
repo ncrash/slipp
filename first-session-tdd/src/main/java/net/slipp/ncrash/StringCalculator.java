@@ -11,7 +11,7 @@ public class StringCalculator {
 		} 
 		
 		if (text.contains(",")) {
-			String[] tokens = text.split(",");
+			String[] tokens = text.split(",|\n");
 			number = 0;
 			
 			for (int i = 0; i < tokens.length; i++) {
