@@ -4,8 +4,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
-import junit.framework.TestCase;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,5 +25,10 @@ public class StringCalculatorTest {
 	@Test
 	public void 숫자_하나를_문자열로_입력할_경우_해당_숫자를_반환한다() throws Exception {
 		assertThat(calculator.add("1"), equalTo(1));
+	}
+	
+	@Test
+	public void 숫자_두개를_컴마_구분자로_입력할_경우_두_숫자의_합을_반환한다() throws Exception {
+		assertThat(calculator.add("1,2"), equalTo(3));
 	}
 }
