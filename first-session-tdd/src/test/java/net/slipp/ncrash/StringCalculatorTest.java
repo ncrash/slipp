@@ -31,4 +31,9 @@ public class StringCalculatorTest {
 	public void 숫자_두개를_컴마_구분자로_입력할_경우_두_숫자의_합을_반환한다() throws Exception {
 		assertThat(calculator.add("1,2"), equalTo(3));
 	}
+	
+	@Test
+	public void 세_개_이상의_숫자를_컴마_구분자로_입력할_경우_모든_숫_자의_합을_반환한다() throws Exception {
+		assertThat(calculator.add("1,2,3"), equalTo(6));
+	}
 }
