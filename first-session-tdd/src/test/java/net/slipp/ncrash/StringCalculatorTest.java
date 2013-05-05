@@ -41,4 +41,9 @@ public class StringCalculatorTest {
 	public void 구분자를_컴마_이외에_New_Line을_사용할_수_있다() throws Exception {
 		assertThat(calculator.add("1,2\n3"), equalTo(6));
 	}
+	
+	@Test
+	public void 더블_슬레쉬를_사용해_커스텀_구분자를_지정할_수_있다() throws Exception {
+		assertThat(calculator.add("//;\n1;2;3"), equalTo(6));
+	}
 }
