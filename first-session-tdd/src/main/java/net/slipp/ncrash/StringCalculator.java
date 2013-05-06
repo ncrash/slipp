@@ -8,7 +8,6 @@ public class StringCalculator {
 	private int number;
 
 	public int add(String text) {
-		// TODO Auto-generated method stub
 		if (text.isEmpty()) {
 			return 0;
 		}
