@@ -3,11 +3,12 @@ package net.slipp.ncrash;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class StringCalculator {
 
 	public int add(String text) {
-		
-		if (text.isEmpty()) {
+		if (StringUtils.isBlank(text)) {
 			return 0;
 		}
 		

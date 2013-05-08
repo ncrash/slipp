@@ -16,8 +16,12 @@ public class StringCalculatorTest {
 	}
 
 	@Test
+	public void null_값_입력할_경우_0을_반환해야_한다() throws Exception {
+		assertThat(calculator.add(null), equalTo(0));
+	}
+	
+	@Test
 	public void 빈_문자열을_입력할_경우_0을_반환해야_한다() throws Exception {
-		
 		assertThat(calculator.add(""), equalTo(0));
 	}
 
