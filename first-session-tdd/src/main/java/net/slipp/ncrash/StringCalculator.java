@@ -6,42 +6,47 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
 
 public class StringCalculator {
+	private static final String DEFAULT_DELIMETER = ",|\n";
+	private static final String CUSTOM_DELIMETER_REGEX = "//(.)\n";
+	private static final Pattern CUSTOM_PATTERN = Pattern
+			.compile(CUSTOM_DELIMETER_REGEX + "(.*)");
 
 	public int add(String text) {
 		if (StringUtils.isBlank(text)) {
 			return 0;
 		}
-		
+
 		return calculateNumbers(getNumbers(text));
 	}
 
 	private String[] getNumbers(String text) {
-		if (text.startsWith("//")) {
-			return getNumbersUsingCustomDelimeter(text);
-		} else {
-			return getNumbersUsingBasicDelimeter(text);
+		String delimeter = DEFAULT_DELIMETER;
+
+		if (isCustomDelimeter(text)) {
+			delimeter = getCustomDelimeter(text);
+			text = removeCustomDelimeter(text);
 		}
+		
+		return text.split(delimeter);
 	}
 
-	private String[] getNumbersUsingBasicDelimeter(String text) {
-		String[] tokens = text.split(",|\n");
-		return tokens;
+	private String removeCustomDelimeter(String text) {
+		return text.replaceAll(CUSTOM_DELIMETER_REGEX, "");
 	}
 
-	private String[] getNumbersUsingCustomDelimeter(String text) {
-		Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
+	private String getCustomDelimeter(String text) {
+		Matcher m = CUSTOM_PATTERN.matcher(text);
 		m.find();
-		String customDelimeter = m.group(1);
-		String[] customDelimeterResult = m.group(2).split(customDelimeter);
-		return customDelimeterResult;
+		return m.group(1);
+	}
+
+	private boolean isCustomDelimeter(String text) {
+		return CUSTOM_PATTERN.matcher(text).matches();
 	}
 
 	private int calculateNumbers(String[] tokens) {
 		int result = 0;
-		if (tokens == null) {
-			return 0;
-		}
-		
+
 		for (int i = 0; i < tokens.length; i++) {
 			result += Integer.parseInt(tokens[i]);
 		}
