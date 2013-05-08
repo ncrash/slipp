@@ -38,12 +38,13 @@ public class StringCalculator {
 
 	private int calculateNumbers(String[] tokens) {
 		int result = 0;
-		if (tokens != null) {
-			for (int i = 0; i < tokens.length; i++) {
-				result += Integer.parseInt(tokens[i]);
-			}
+		if (tokens == null) {
+			return 0;
 		}
 		
+		for (int i = 0; i < tokens.length; i++) {
+			result += Integer.parseInt(tokens[i]);
+		}
 		return result;
 	}
 }
