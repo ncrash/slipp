@@ -5,28 +5,21 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-	private int result;
-	private String[] numbers;
-
 	public int add(String text) {
 		
 		if (text.isEmpty()) {
 			return 0;
 		}
 		
-		calculateNumbers(getNumbers(text));
-
-		return result;
+		return calculateNumbers(getNumbers(text));
 	}
 
 	private String[] getNumbers(String text) {
 		if (text.startsWith("//")) {
-			numbers = getNumbersUsingCustomDelimeter(text);
+			return getNumbersUsingCustomDelimeter(text);
 		} else {
-			numbers = getNumbersUsingBasicDelimeter(text);
+			return getNumbersUsingBasicDelimeter(text);
 		}
-		
-		return numbers;
 	}
 
 	private String[] getNumbersUsingBasicDelimeter(String text) {
@@ -42,11 +35,14 @@ public class StringCalculator {
 		return customDelimeterResult;
 	}
 
-	private void calculateNumbers(String[] tokens) {
+	private int calculateNumbers(String[] tokens) {
+		int result = 0;
 		if (tokens != null) {
 			for (int i = 0; i < tokens.length; i++) {
 				result += Integer.parseInt(tokens[i]);
 			}
 		}
+		
+		return result;
 	}
 }
