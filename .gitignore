@@ -6,6 +6,9 @@ target
 .settings
 .classpath
 
+# Vagrant Files #
+.vagrant
+
 # Package Files #
 *.jar
 *.war
