@@ -9,6 +9,9 @@ target
 # Vagrant Files #
 .vagrant
 
+# Gradle Files #
+.gradle
+
 # Package Files #
 *.jar
 *.war
