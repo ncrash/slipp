@@ -11,6 +11,7 @@ target
 
 # Gradle Files #
 .gradle
+build
 
 # Package Files #
 *.jar
