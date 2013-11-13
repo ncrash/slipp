@@ -18,3 +18,8 @@
 * 반복되는 부분과 반복되지 않는 부분 추출
 * 반복되는 부분 템플릿 생성
 * 콜백으로 실제 처리해야하는 로직 전달
+
+## 프로젝트 구성
+* gradle base
+    * 권남님의 gradle-tutorial을 활용해서 진행
+    * 이 문서를 좀 더 발전시킨 [Rocking the gradle](https://github.com/ihoneymon/rocking-the-gradle) 참조.
