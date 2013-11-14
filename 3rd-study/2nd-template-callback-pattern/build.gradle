@@ -9,6 +9,7 @@
 
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
+apply plugin: 'eclipse'
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -28,3 +29,29 @@ dependencies {
     // 'test.useTestNG()' to your build script.
     testCompile "junit:junit:4.11"
 }
+
+eclipse {
+        classpath {
+                downloadSources=true
+        }
+
+        jdt {
+                file {
+                        withProperties { 
+                                properties -> properties.setProperty("encoding//src/main/java", "utf-8")
+                                              properties.setProperty("encoding//src/main/resources", "utf-8")
+                                              properties.setProperty("encoding//src/test/java", "utf-8")
+                                              properties.setProperty("encoding//src/test/resources", "utf-8")
+                                                  //properties.setProperty("encoding//src/main/generated", "utf-8")
+                        }                
+                }
+        }
+}
+
+eclipseJdt << {
+    File f = file('.settings/org.eclipse.core.resources.prefs')
+    f.write('eclipse.preferences.version=1\n')
+    f.append('encoding/<project>=utf-8')
+}
+
+tasks.eclipse.dependsOn cleanEclipse
