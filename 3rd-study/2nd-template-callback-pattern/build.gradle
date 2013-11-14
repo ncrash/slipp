@@ -19,7 +19,7 @@ repositories {
 }
 
 ext {
-    javaVersion = '1.7'
+    javaVersion = '1.6'
     
 	slf4jVersion = '1.7.5'
 	logbackVersion = '1.0.13'
@@ -64,7 +64,21 @@ configurations {
         configuration.exclude group: 'org.slf4j', module: 'slf4j-jdk14'
     }
 }
+
+task initProject << {
+        createDir = {
+                it.mkdirs();
+        }
         
+        sourceSets*.java.srcDirs*.each createDir
+        sourceSets*.resources.srcDirs*.each createDir
+
+        processResources {
+                from(sourceSets.main.resources.srcDirs) {
+                }
+        }
+}
+
 eclipse {
         classpath {
                 downloadSources=true
@@ -90,3 +104,4 @@ eclipseJdt << {
 }
 
 tasks.eclipse.dependsOn cleanEclipse
+tasks.eclipse.dependsOn initProject
