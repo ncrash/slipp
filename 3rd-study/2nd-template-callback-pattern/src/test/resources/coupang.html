@@ -1,0 +1,2752 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta http-equiv="X-UA-compatible" content="IE=edge" />
+    <title>쿠팡!</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+<link rel="stylesheet" href="/resources/wow/css/common.css?_s=30d2de55e45bce0bece0c27a284bb75b" type="text/css" />
+<link rel="stylesheet" href="/resources/wow/css/main.css?_s=2415d6f41b95c18571e152a26be61140" type="text/css" />
+<script src="/resources/wow/js/jquery-1.9.1.min.js?_s=397754ba49e9e0cf4e7c190da78dda05" type="text/javascript"></script>
+<script src="/resources/js/jquery.plugin.diaimm.class.js?_s=8abe7534cd5a74eb625a6ce556fd9c5a" type="text/javascript"></script>
+    <!-- placeholder 크로스브라우징 -->
+<script src="/resources/wow/js/placeholder.js?_s=affd40c0ab3899f82a5c8b63bac858d3" type="text/javascript"></script>
+<script src="/resources/wow/js/common.js?_s=219c900ae1f1ad59128ffec915d13b7e" type="text/javascript"></script>
+<script src="/resources/wow/js/daumheader.js?_s=4305e7d284d19c27b0196b13986da389" type="text/javascript"></script>
+<script src="/resources/wow/js/cclick.js?_s=8c478a473560c68603cecf2299cc18aa" type="text/javascript"></script>
+<script src="/resources/wow/js/sclick.js?_s=55d42ee13ba387710a475cdc244fdea5" type="text/javascript"></script>
+<script src="/resources/wow/js/dealList.js?_s=8654217b91f1e51c27220201dfef3504" type="text/javascript"></script>
+
+<!--카테고리 메뉴 A/B테스트 CSS-->
+<link rel="stylesheet" href="/resources/wow/css/categoryMenuABTest.css?_s=78d42882dd0b0e4bc224509b96612c0b" type="text/css" />
+
+<script src="/resources/wow/js/home.js?_s=f047334ede7cde381fa1b3d38f70a92d" type="text/javascript"></script>
+</head>
+<body>
+<div id="wrap">
+    <div id="header">
+<div id="funnel">
+<script src="/resources/js/json2.js" type="text/javascript"></script>
+<script type="text/javascript">
+	var funnelObj = $.parseJSON('{"home":[{"reqUrl":"/","isValid":false,"cateInfo":""}],"alldeal":[],"deal":[],"search":[],"prmt":[],"allDealView":[],"todayClose":[],"local":[],"shopping":[]}');
+	$.each(funnelObj,function(key, val) {
+		$.each(val, function(){
+			this.isValid = true;
+		});
+	});
+	document.cookie ='FUN="' + JSON.stringify(funnelObj).split("\"").join("'") + '"; path=/ ;domain=coupang.com;';
+</script>
+</div><div class="superUser">
+</div>
+
+
+<script src="/resources/js/json2.js" type="text/javascript"></script>
+<script>
+	var visitExpIds = [];
+	$(document).ready(function() {
+		$("div.mabDiv").each(function(result){
+			visitExpIds.push(this.id);
+		});
+		var obj = $.parseJSON('[{"e":"f6","v":"2","f":0},{"e":"f7","v":"2","f":0},{"e":"f8","v":"3","f":0},{"e":"f2","v":"2","f":0}]');
+		if (visitExpIds.length > 0) {
+			$.each(obj,function() {
+				var currentId = this.e;
+				if(jQuery.inArray(currentId, visitExpIds) > -1){
+					if (2 != this.f) {
+						this.f = 1;
+					}
+				}
+			});
+		}
+		document.cookie ='BAM="' + JSON.stringify(obj).split("\"").join("'") + '"; path=/ ;domain=coupang.com;';
+	});
+</script>
+
+<script type="text/javascript">
+//슈퍼 유저 
+function tomorrow(){
+	document.location.href="/preview.pang?rtnUrl=http%3A%2F%2Fwww.coupang.com%2F&previewDate=tomorrow&previewTime=1300";
+}
+function todateView(){
+	document.location.href="/preview.pang?rtnUrl=http%3A%2F%2Fwww.coupang.com%2F";
+}
+function preview(){
+	document.location.href="/preview.pang?rtnUrl=http%3A%2F%2Fwww.coupang.com%2F&previewDate="+$('#previewDate').val()+"&previewTime="+$('#previewTime').val();
+}
+
+function obsStart(){
+	if ($('#targetUserId').val() =="" && $('#targetMemberSrl').val() =="") {
+		alert('변경하고자 하는 사용자 Id or srl을 입력하세요.'); 
+		return;
+	}
+	document.location.href="https://login.coupang.com/login/obServerLoginAction.pang?id=" + $('#targetUserId').val() + "&srl=" + $('#targetMemberSrl').val() + "&obsYn=Y&rtnUrl=http%3A%2F%2Fwww.coupang.com%2F";
+}
+
+//MAB
+function varNames(){
+	var expName = $("#expname option:selected").val();
+	$.getJSON('/variantnames.pang?exp='+expName, function(data){
+		var html = "";
+		$.each(eval(data.MSG), function(index, value) {
+		 	html += '<option value="' + value.varName + '" >' + value.description + '</option>';
+		});
+	    $('#vname').html(html);
+	});	
+}
+function forceSuggest(){
+	var expName = $("#expname option:selected").val();
+	var vName = $("#vname option:selected").val();
+	document.location.href="/mabsetting.pang?exp="+expName+"&var="+vName+"&rtnUrl=http%3A%2F%2Fwww.coupang.com%2F";
+}
+function forceInitSuggest(){
+	document.location.href="/mabinit.pang?rtnUrl=http%3A%2F%2Fwww.coupang.com%2F";
+	
+}
+</script>
+<div id="topBannersContainer">
+    <!-- 구독바 -->
+    <div id="subScriptionTop" style="display:none;">
+        <div id="subScriptionTopMain" class="main">
+            <div class="img"><img src="http://static.coupangcdn.com/image/static/header/img_subscription.gif" width="287" height="50" alt="" /></div>
+            <div class="emailInput"><input type="text" id="email_address" name="email_address" maxlength="30" onfocus="$(this).addClass('on')" onblur="if($(this).val()=='')$(this).removeClass('on')" /></div>
+            <div class="btn"><img src="http://static.coupangcdn.com/image/static/www/header/v1/btn_subscription.gif" width="91" height="34" class="hand" alt="구독신청" data-cclick="SUBSCRIBE,UP,1" /></div>
+            <div id="result_msg"></div>
+        </div>
+        <div class="close" data-cclick="SUBSCRIBE,UP,3"></div>
+    </div>
+    <div id="bannerWrap" class="bannerWrap july">
+        <div class="bannerTop">
+            <img width="1140" class="bannerEventImg" height="590" alt="무료배송 바로쇼핑하기" src="http://img1.coupangcdn.com/image/www/event/main11/img_banner_big.jpg" usemap="#freeEvent">
+            <map id="freeEvent" name="freeEvent">
+                <area coords="150,420,452,520" href="http://www.coupang.com/shopping.pang" alt="바로쇼핑하기" style="z-index:99998;"/>
+            </map>
+        </div>
+    </div>
+    <div id="bannerBar" class="bannerBar july">
+        <div class="img"><a href="javascript:;" id="freeDelivery9800" data-cclick="HEADER,FREEDELIVERYBANNER,1"><img src="http://img2.coupangcdn.com/image/www/event/main11/img_banner_ddi.jpg" width="1436" height="70" alt="9800무료배송 이벤트"/></a></div>
+        <div class="close hand"></div>
+    </div>
+<script src="/resources/wow/js/movableBanner.js?_s=dc087075b052ebbb21f5db3a9812030d" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.bannerEventImg').on('click',function(){
+                $(".july .bannerTop").clearQueue().stop().animate({marginTop: '-980px'}, 1000);
+            });
+
+            $('#freeDelivery9800').on('click',function(){
+                $(".bannerTop").clearQueue().stop().animate({marginTop: '0px'}, 1000);
+            });
+
+            $('div.btn','#subScriptionTopMain').on('click',function(){
+                var emailAddress = $('#email_address').val();
+                subscribeJoin(emailAddress,'T','#result_msg');
+            });
+
+            var freeEventBar = new TopBanner('#bannerBar','','#bannerBar div.close.hand');
+            freeEventBar.setCookieData('EVT_FDC_NOTI','N',24);
+
+            var subscriptionBar = new TopBanner('#subScriptionTop','.rss.btn','#subScriptionTop div.close');
+
+        });
+
+        function subscribeJoin(email_address,subscrType,resultArea){
+            var $resultArea = $(resultArea);
+            if(email_address == ''){
+                $resultArea.empty().addClass('alert').text("이메일 주소를 입력해주셔야 합니다.");
+                return;
+            }
+            var url='emailAddress=' + email_address + '&subscrType='+ subscrType;
+            $.ajax({
+                type: "POST",
+                contentType: 'application/x-www-form-urlencoded; charset=utf-8;',
+                url: "/coupangSubscribeJoin.pang",
+                data: url,
+                async: false,
+                cache: false,
+                success: function(msg){
+                    if(msg == 'EMAIL_EMPTY'){
+                        $resultArea.empty().addClass('alert').text("이메일 주소를 입력해주셔야 합니다.");
+                    }else if(msg == 'INVALID_EMAIL'){
+                        $resultArea.empty().addClass('alert').text("이메일 주소가 올바르지 않습니다.");
+                    }else {
+                        $('#subScriptionTopMain').html('<div class="img"></div><div class="emailTxt"></div>');
+                        $('.rss.btn').hide();
+                    }
+                },
+                error:function (){
+                    layerPop('구독회원 가입처리중 오류가 발생하였습니다.');
+                }
+            });
+        }
+        function layerPop(txt){
+            $('#layerAlertPop .top p, #layerAlertPop .bot img').unbind();
+            $('div.middle','#layerAlertPop').text(txt);
+            $('#layerAlertPop').show();
+            $('#layerAlertPop .top p, #layerAlertPop .bot img').click(function(){
+                $('#layerAlertPop').hide();
+            });
+        }
+    </script>
+</div>
+        <div class="myMenuWrap">
+			<div class="myMenu clearFix">
+				<ul class="menuBox left">
+					<li class="bookmark btn"><a href="#" onclick="bookmarksite();" data-cclick="HEADER,BOOKMARK,1"><span class="noBorder">즐겨찾기</span></a></li>
+										<li class="rss btn"><a href="#" data-cclick="HEADER,SUBSCRIBE,1"><span>구독하기</span></a></li>
+				</ul>
+				<div class="menuBox right">
+					<ul>
+						<li class="icon login btn"><a href="https://login.coupang.com/login/login.pang?rtnUrl=http%3A%2F%2Fwww.coupang.com%2F"><em data-cclick="HEADER,LOGIN,1"><span class="noBorder">로그인</span></em></a></li>										
+						<li class="signUp btn"><a href="https://login.coupang.com/login/memberJoinFrm.pang" data-cclick="HEADER,JOIN,1"><span class="noBorder">회원가입</span></a></li>
+						<li class="mobileApp btn"><a href="http://www.coupang.com/mobileServiceGuide.pang"><span><em class="icon"></em>모바일 APP</span></a></li>
+						<li class="cs btn">
+	                        <a href="http://pay.coupang.com/csFaq.pang" data-cclick="HEADER,CS,1"><span>고객센터<em class="icon"></em></span></a>
+                            <div class="dropBox">
+                                <ul>
+                                    <li class="dropBoxItem"><a href="http://pay.coupang.com/csFaq.pang" data-cclick="HEADER,CS,2">자주묻는 질문</a></li>
+                                    <li class="dropBoxItem"><a href="https://pay.coupang.com/mtomInquiry.pang" data-cclick="HEADER,QNA,1">1:1 문의하기</a></li>
+                                    <li class="dropBoxItem"><a href="http://pay.coupang.com/returnPolicy.pang" data-cclick="HEADER,CS,3">환불안내</a></li>
+                                    <li class="dropBoxItem"><a href="http://pay.coupang.com/wowServiceInfo.pang" data-cclick="HEADER,CS,4">WOW서비스</a></li>
+                                </ul>
+                            </div>
+	                    </li>
+						<li class="myCoupang btn">
+							<a id="myCoupangAnchor" href="https://pay.coupang.com/memberOrderList.pang" data-cclick="HEADER,MY,1" ><span class="noBorder">마이쿠팡<em class="icon"></em></span></a>
+                            <div class="dropBox">
+                                <ul>
+                                    <li class="dropBoxItem"><a href="https://pay.coupang.com/memberOrderList.pang" data-cclick="HEADER,MY,1">구매내역</a></li>
+                                    <li class="dropBoxItem"><a href="https://pay.coupang.com/memberOrderList.pang" data-cclick="HEADER,MY,2">취소/반품</a></li>
+                                    <li class="dropBoxItem"><a href="https://pay.coupang.com/userAllOrders.pang?viewType=DA&tab=D" data-cclick="HEADER,MY,3">배송조회</a></li>                                    
+                                </ul>
+                            </div>
+						</li>
+						<li class="cart btn"><a id="cartAnchor" href="http://www.coupang.com/cartView.pang"><span class="" data-cclick="HEADER,CART,1"><em class="icon"></em>장바구니<strong id="itemCounter" class="icon">0</strong></span></a></li>
+					</ul>
+				</div>
+			</div>
+            <script>
+                $(document).ready(function(){
+                    $('.menuBox .cs , .menuBox .myCoupang').hover(function(){
+                        $(this).find('.dropBox').show();
+                    }, function(){
+                        $(this).find('.dropBox').hide();
+                    })
+                })
+            </script>
+        </div>
+        <div class="headerMiddle clearFix">
+			<a id="headerLogo" class="icon" href="/" data-sclick="H,1" title="Coupang - Color Your Days">
+                <em class="logo" data-cclick="HEADER,LOGO,1,,home">쿠팡</em>
+            </a>
+            <em class="icon tag">내가 잘사는 이유</em>
+            <div id="searchArea">
+				<form id="headerSearchForm" method="get" action="/search.pang">
+					<input type="text" id="headerSearchInput" class="placeholder" name="q" autocomplete="off" data-cclick="Search,GNB">
+					<a href="#" data-cclick="Search,GNB"></a>
+				</form>
+				<div id="cpPopularSearchBox" class="cpDropboxMenu"></div>
+			</div>
+	        <script type="text/javascript">
+	        $(document).ready(function(){
+	        	var form = new SearchForm($('#headerSearchForm'),"곱창, 오동통한 곱이 땡길때","KEYWORD","곱창",false);
+				
+				// 검색제안어, 인기검색어 
+				new coupang.suggest($("#searchArea #headerSearchInput"), $("#searchArea #cpPopularSearchBox"));
+	        });
+	        </script>
+        </div>
+        <div id="gnb">
+<script type="text/javascript">
+    menu_animate(".move");
+    function menu_animate(target) {
+        $(target).animate({"top" : "-=7px"},"fast").animate({"top" : "+=7px"},"fast").animate({"top" : "-=3px"},"fast").animate({"top" : "+=3px"},"fast");
+    }
+</script>
+
+<ul class="gnbTabBox clearFix" id="gnbTabBox">
+    <li class="gnbTab home on">
+        <a href="/" data-cclick="GNB,TOP,home,,home" data-sclick="G1,,,A,Today"><span>쿠팡홈</span></a>
+    </li>
+    <li class="gnbTab shopping ">
+        <a href="/shopping.pang" data-cclick="GNB,TOP,SHOPPING,,home" data-sclick="G1|||B"><span>쇼핑</span></a>
+		<p class="eventIco5"><img src="http://static.coupangcdn.com/image/static/www/product/deal3/big3event/ico_move5.png" width="79" height="44" alt="9800원이상 무료배송" class="move" style="position:absolute;top:-36px;left:59px;" /></p>
+			<script type="text/javascript">
+		        menu_animate(".move");
+		        function menu_animate(target) {
+		            $(target).animate({"top" : "-=7px"},"fast").animate({"top" : "+=7px"},"fast").animate({"top" : "-=3px"},"fast").animate({"top" : "+=3px"},"fast");
+		        }
+	 	    </script>
+        <div class="gnbTabDropMenuTitle"></div>
+        <ul class="gnbTabDropMenu clearFix">
+            <li class="menuItem special">
+                <a href="/shopping.pang" data-cclick="GNB,LAYERCLICK,shoppingBest,1,home" data-sclick="G2|1||B|Special"><em class="icon"></em>쇼핑 Best</a>
+            </li>
+            <li class="menuItem clothes">
+                <a href="/alldeal.pang?type=B&amp;tab=E" data-cclick="GNB,LAYERCLICK,living,7,home" data-sclick="G2|7||B|E"><em class="icon"></em>생활/주방</a>
+            </li>
+            <li class="menuItem accessories">
+                <a href="/alldeal.pang?type=B&amp;tab=A" data-cclick="GNB,LAYERCLICK,clothes,2,home" data-sclick="G2|2||B|A"><em class="icon"></em>의류</a>
+            </li>
+            <li class="menuItem sports">
+                <a href="/alldeal.pang?type=B&amp;tab=L" data-cclick="GNB,LAYERCLICK,interior,8,home" data-sclick="G2|8||B|L"><em class="icon"></em>홈인테리어/취미</a>
+            </li>
+            <li class="menuItem food">
+                <a href="/alldeal.pang?type=B&amp;tab=B" data-cclick="GNB,LAYERCLICK,accessories,3,home" data-sclick="G2|3||B|B"><em class="icon"></em>패션잡화</a>
+            </li>
+            <li class="menuItem beauty">
+                <a href="/alldeal.pang?type=B&amp;tab=G,H" data-cclick="GNB,LAYERCLICK,digital,9,home" data-sclick="G2|9||B|G,H"><em class="icon"></em>디지털/가전</a>
+            </li>
+            <li class="menuItem living">
+                <a href="/alldeal.pang?type=B&amp;tab=F" data-cclick="GNB,LAYERCLICK,sports,4,home" data-sclick="G2|4||B|F"><em class="icon"></em>스포츠/레저</a>
+            </li>
+            <li class="menuItem interior">
+                <a href="/baby.pang" data-cclick="GNB,LAYERCLICK,baby,10,home" data-sclick="G2|10||B|J"><em class="icon"></em>출산/유아동</a>
+            </li>
+            <li class="menuItem digital">
+                <a href="/alldeal.pang?type=B&amp;tab=C" data-cclick="GNB,LAYERCLICK,food,5,home" data-sclick="G2|5||B|C"><em class="icon"></em>식품</a>
+            </li>
+            <li class="menuItem baby noBorder">
+                <a href="/alldeal.pang?type=B&amp;tab=K" data-cclick="GNB,LAYERCLICK,ecoupon,11,home" data-sclick="G2|11||B|K"><em class="icon"></em>e쿠폰</a>
+            </li>
+            <li class="menuItem ecoupon noBorder">
+                <a href="/alldeal.pang?type=B&amp;tab=D" data-cclick="GNB,LAYERCLICK,beauty,,home" data-sclick="G2|6||B|D"><em class="icon"></em>뷰티</a>
+            </li>
+        </ul>
+    </li>
+    <li class="gnbTab local ">
+        <a href="/local.pang" data-sclick="G1|||A" data-cclick="GNB,TOP,LOCAL,,home"><span>지역</span></a>
+        <div class="gnbTabDropMenuTitle"></div>
+        <ul class="gnbTabDropMenu clearFix">
+            <li class="menuItem special">
+            	<a href="/local.pang" data-cclick="GNB,LAYERCLICK,localBest,1,home" data-sclick="G2|1||A|Special"><span>지역 Best</span></a>
+            </li>
+            <li class="menuItem national">
+            	<a href="/alldeal.pang?type=A&amp;tab=A,B" data-cclick="GNB,LAYERCLICK,national,2,home" data-sclick="G2|1||A|A,B"><span>전국/서울</span></a>
+            </li>
+            <li class="menuItem incheon">
+            	<a href="/alldeal.pang?type=A&amp;tab=C,D" data-cclick="GNB,LAYERCLICK,incheon,3,home" data-sclick="G2|2||A|C,D"><span>인천/경기</span></a>
+            </li>
+            <li class="menuItem daegu">
+            	<a href="/alldeal.pang?type=A&amp;tab=E,F,G,H" data-cclick="GNB,LAYERCLICK,daegu,4,home" data-sclick="G2|3||A|E,F,G,H"><span>대구/부산</span></a>
+            </li>
+            <li class="menuItem daegeon">
+            	<a href="/alldeal.pang?type=A&amp;tab=I,J,K,L,M,N" data-cclick="GNB,LAYERCLICK,daegeon,5,home" data-sclick="G2|4||A|I,J,K,L,M,N"><span>대전/광주</span></a>
+            </li>
+            <li class="menuItem gangwon noBorder">
+            	<a href="/alldeal.pang?type=A&amp;tab=O,P" data-cclick="GNB,LAYERCLICK,gangwon,6,home" data-sclick="G2|5||A|O,P"><span>강원/제주</span></a>
+            </li>
+        </ul>
+    </li>
+    <li class="gnbTab travel ">
+        <a href="/alldeal.pang?type=C" data-sclick="G1|||C" data-cclick="GNB,TOP,TOUR,,home"><span>여행,레저</span></a>
+        <div class="gnbTabDropMenuTitle"></div>
+        <ul class="gnbTabDropMenu clearFix">
+            <li class="menuItem whole">
+                <a href="/alldeal.pang?type=C&amp;tab=" data-cclick="GNB,LAYERCLICK,travelWhole,1,home" data-sclick="G2|1||C"><em class="icon"></em><span>전체</span></a>
+            </li>
+            <li class="menuItem leisure">
+                <a href="/alldeal.pang?type=C&amp;tab=F" data-cclick="GNB,LAYERCLICK,leisure,5,home" data-sclick="G2|5||C|F"><em class="icon"></em><span>레저/입장권</span></a>
+            </li>
+            <li class="menuItem overseas">
+                <a href="/alldeal.pang?type=C&amp;tab=A" data-cclick="GNB,LAYERCLICK,overseas,2,home" data-sclick="G2|2||C|A"><em class="icon"></em><span>해외여행</span></a>
+            </li>
+            <li class="menuItem lodge">
+                <a href="/alldeal.pang?type=C&amp;tab=D" data-cclick="GNB,LAYERCLICK,lodge,6,home" data-sclick="G2|6||C|D"><em class="icon"></em><span>숙박</span></a>
+            </li>
+            <li class="menuItem domestics">
+                <a href="/alldeal.pang?type=C&amp;tab=B" data-cclick="GNB,LAYERCLICK,domestics,3,home" data-sclick="G2|3||C|B"><em class="icon"></em><span>국내여행</span></a>
+            </li>
+            <li class="menuItem premium noBorder">
+                <a href="/alldeal.pang?type=C&amp;tab=G" data-cclick="GNB,LAYERCLICK,premium,7,home" data-sclick="G2|7||C|G"><em class="icon"></em><span>프리미엄</span></a>
+            </li>
+            <li class="menuItem jeju noBorder">
+                <a href="/alldeal.pang?type=C&amp;tab=C" data-cclick="GNB,LAYERCLICK,jeju,4,home" data-sclick="G2|4||C|C"><em class="icon"></em><span>제주여행</span></a>
+            </li>
+        </ul>
+    </li>
+    <li class="gnbTab culture ">
+        <a href="/alldeal.pang?type=D" data-sclick="G1|||D" data-cclick="GNB,TOP,CULTURE,,home"><span>문화</span></a>
+        <div class="gnbTabDropMenuTitle"></div>
+        <ul class="gnbTabDropMenu clearFix">
+             <li class="menuItem whole">
+                <a href="/alldeal.pang?type=D&amp;tab=" data-cclick="GNB,LAYERCLICK,cultureWhole,1,home"><em class="icon"></em><span>전체</span></a>
+            </li>
+            <li class="menuItem musical">
+                <a href="/alldeal.pang?type=D&amp;cate3=A&amp;tab=" data-cclick="GNB,LAYERCLICK,musical,2,home"><em class="icon"></em><span>뮤지컬/연극</span></a>
+            </li>
+            <li class="menuItem concert">
+                <a href="/alldeal.pang?type=D&amp;cate3=B&amp;tab=" data-cclick="GNB,LAYERCLICK,concert,3,home"><em class="icon"></em><span>콘서트/클래식</span></a>
+            </li>
+            <li class="menuItem experience">
+                <a href="/alldeal.pang?type=D&amp;cate3=C&amp;tab=" data-cclick="GNB,LAYERCLICK,experience,4,home"><em class="icon"></em><span>체험/전시/아동</span></a>
+            </li>
+            <li class="menuItem movie noBorder">
+                <a href="/alldeal.pang?type=D&amp;cate3=D&amp;tab=" data-cclick="GNB,LAYERCLICK,movie,5,home"><em class="icon"></em><span>영화/스포츠</span></a>
+            </li>
+        </ul>
+    </li>
+    <li class="gnbTab openToday">
+    	<a href="/allDealView.pang?subTab=new" data-sclick="G1|1|||TODAY_OPEN" data-cclick="GNB,TOP,TODAY_OPEN,,home"><span>오늘오픈</span></a>
+    </li>
+    <li class="gnbTab closeToday">
+    	<a href="/todayClose.pang" data-sclick="G1|1|||CT" data-cclick="GNB,TOP,CLOSE_TIME,,home"><span>오늘마감</span></a>
+    </li>
+</ul>
+        </div>
+<div id="sideBanner">
+				<div class="bannerArea"><a class="rightBannerATag1" href="/freeshipping&areacode=R" data-cclick="BANNER,RIGHT,1" data-sclick="R|1"  ><img src="http://img1.coupangcdn.com/image/banner/201311/right_7754bdbf-26b7-4ae7-835d-3fb4b5d44818.png" class="png24" alt="" /></a></div>
+				<a  href="http://www.coupang.com/promotion/prmt.pang?promotionId=255&areacode=R" data-cclick="BANNER,RIGHT,2" data-sclick="R|2"  ><img src="http://img1.coupangcdn.com/image/banner/201310/right_6c48a7df-8295-49df-9cf6-d676bc9ac558.jpg" class="png24" alt="" /></a>
+				<a  href="http://www.coupang.com/promotion/prmt.pang?promotionId=256&areacode=R" data-cclick="BANNER,RIGHT,3" data-sclick="R|3"  ><img src="http://img1.coupangcdn.com/image/banner/201311/right_e722e50c-04ef-4d0e-b46e-764e54717776.jpg" class="png24" alt="" /></a>
+					<a  href="http://www.coupang.com/CoupangLotteCard.pang?&areacode=R" data-cclick="BANNER,RIGHT,4" data-sclick="R|4" ><img src="http://img2.coupangcdn.com/image/banner/201307/right_442f0a42-8c09-4d0a-aa98-c1a49abcbe24.jpg" class="png24" alt="" /></a>
+<div>
+	<dl class="myview">
+	</dl>
+</div>
+<script type="text/javascript">
+	var RecentlyService = {
+		viewRecentlyDeals : function(){
+			var me = this;
+			$.get('/recentlydeals.pang?menuId=home', function($recentlyDealHtml){
+				$('.myview').html($recentlyDealHtml);
+				me.bindRecentlyDeals();
+				me.bindMouseAction();
+				me.bindDeleteBtn();
+				me.bindRecentlyDealsNaviBtn();
+				me.bindRecentlyDealsDetailLink();
+			});
+		},
+		bindDeleteBtn : function(){
+			var me = this;
+			$('#viewprodList .prodinfo .close').unbind('click').bind('click', function(evt){
+				evt.preventDefault();
+				var $that = $(this);
+				var coupangSrl = $that.attr('data-coupangSrl');
+				$.post("/recentlydeals/remove.pang",
+					{'coupangSrl':coupangSrl},
+					function(data){
+						if(data == "OK") {
+							me.viewRecentlyDeals();
+						}
+					}
+				);
+			});
+		},
+		bindMouseAction : function(){
+			$('#viewprodList li').each(function(){
+				$(this).bind({
+					mouseenter : function(){
+						$(this).find('.infowrap').addClass('infowrapOn');
+						$(this).find('.prodinfo').find('.close').click(function(){
+							$(this).parent().parent().removeClass('infowrapOn');
+							return false;
+						});
+					},
+					mouseleave : function(){
+						$(this).find('.infowrap').removeClass('infowrapOn');
+					}
+				})
+			});
+		},
+		bindRecentlyDeals : function(){
+			var $bigList = $('#recentlyDeals'), group;
+			var idx = 0;
+			while(($group = $bigList.find('li:lt(4)').remove()).length){
+				$group.removeAttr('style');
+				$('<ul class="recentlyRightBanner"/>').append($group).prependTo('#viewprodList');
+			}
+			$('.recentlyRightBanner').hide();
+			$('.recentlyRightBanner').last().show();
+			$('#recentlyDeals').remove();
+		},
+		bindRecentlyDealsNaviBtn : function(){
+			$('.recentlyDealsNextBtn').unbind('click').bind('click', function(evt){
+				evt.preventDefault();
+				var totalPage = $('.recentlyRightBanner').length;
+				var page = Number($('#recentlyDealsCurrentPage').text())+1;
+				if(page > totalPage) {
+					pageDisplay(totalPage - 1, 1);
+				} else {
+					pageDisplay(totalPage - page, page);
+				}
+			});
+			$('.recentlyDealsPrevBtn').unbind('click').bind('click', function(evt){
+				evt.preventDefault();
+				var totalPage = $('.recentlyRightBanner').length;
+				var page = Number($('#recentlyDealsCurrentPage').text())-1;
+				if(page < 1) {
+					pageDisplay(0, totalPage);
+				} else {
+					pageDisplay(totalPage - page, page);
+				}
+			});
+			function pageDisplay(pageIndex, dpPage){
+				$('.recentlyRightBanner').hide();
+				$('.recentlyRightBanner:eq('+pageIndex+')').show();
+				$('#recentlyDealsCurrentPage').text(dpPage);
+			}
+		},
+		bindRecentlyDealsDetailLink : function(){
+			$('.goDealDetailLink').unbind('click').bind('click', function(evt){
+				var url = "/deal.pang?coupang="+$(this).attr('data-coupang');
+				document.location.href=url;
+			});
+		}
+	};
+
+	$(document).ready(function(){
+		RecentlyService.viewRecentlyDeals();
+
+		function viewBanner(){
+			var scroll = $(window).scrollTop();
+			var view = $('dl.myview');
+			var viewposiotion = $('#sideBanner').height()+$('#sideBanner').offset().top;
+			var dealArea = $('ul.gnbTabBox');
+			var coupangWidth = dealArea.offset().left+dealArea.width()+15;
+
+			if (scroll > viewposiotion+10) {
+				view.css({'position':'fixed', 'top':'10px', 'left':coupangWidth});
+			} else {
+				view.css({position:'absolute', 'top':$('#sideBanner').height()+10, 'left':'0'});
+			}
+		}
+		viewBanner();
+		$(window).bind('scroll resize', viewBanner);
+	})
+
+</script>
+	<div id="btnMove">
+	    <div class="btn_up" alt="Up" class="hand" data-cclick="ETC,UP/DOWN,1"></div>
+	    <div class="btn_down" alt="Down" class="hand" data-cclick="ETC,UP/DOWN,2"></div>
+	</div>
+</div>
+
+<script type='text/javascript'>
+$(document).ready(function(){
+
+	// 배너 링크
+	$('.rightBannerATag1').bind('click', function(evt){
+		try {
+			evt.preventDefault();
+			var $that = $(this);
+			var href = $that.attr('href');
+			if( href.indexOf('free') > -1) {
+	    		$(".bannerTop").animate({marginTop: '0px'}, 1500).delay(500);
+			}else{
+				document.location.href = href;
+			}
+		}catch(e){}
+	});
+
+	// 탑,다운 이동 버튼
+    $('#btnMove div.btn_up').on('click',function(){
+        self.scrollTo(0,0);
+    });
+    $('#btnMove div.btn_down').on('click',function(){
+        if( $('div.dealInfo').length <= 0 ) {
+            window.scrollTo(0,document.body.scrollHeight);
+        }
+    });
+});
+</script>
+    </div>
+
+        <div id="home">
+            <div class="todayContainer">
+                <div class="todayList">
+                    <h2>Today's HOT!</h2>
+                    <ul>
+                        <li>
+                            <em>
+                                <a href="/deal.pang?coupang=48884870&areacode=MB&order=1" order="1" data-cclick="Main,HOT_DEALX6_RIGHT,1,1"><img src="http://img2.coupangcdn.com/image/product/201311/main1_76932f6a-f1d9-4a3a-8ecd-59cf8d033020.jpg" alt="" /></a>
+                                <span>딜 타이틀</span>
+                            </em>
+                            <strong><a href="/deal.pang?coupang=48884870&areacode=MB&order=1" order="1" data-cclick="Main,HOT_DEALX6_LEFT,1,1"><img src="http://img1.coupangcdn.com/image/product/201311/deal1_4802664d-36bc-404b-9546-bb6905a83710.jpg" alt="" /></a></strong>
+                        </li>
+                        <li>
+                            <em>
+                                <a href="/deal.pang?coupang=49080218&areacode=MB&order=2" order="2" data-cclick="Main,HOT_DEALX6_RIGHT,1,2"><img src="http://img1.coupangcdn.com/image/product/201311/main2_a0b5c76e-d065-4fdf-ab1a-9a765040d9e5.jpg" alt="" /></a>
+                                <span>딜 타이틀</span>
+                            </em>
+                            <strong><a href="/deal.pang?coupang=49080218&areacode=MB&order=2" order="2" data-cclick="Main,HOT_DEALX6_LEFT,1,2"><img src="http://img1.coupangcdn.com/image/product/201311/deal2_01ee4956-e4b7-4da5-9780-882bfe48a22b.jpg" alt="" /></a></strong>
+                        </li>
+                        <li>
+                            <em>
+                                <a href="/deal.pang?coupang=48822408&areacode=MB&order=3" order="3" data-cclick="Main,HOT_DEALX6_RIGHT,1,3"><img src="http://img2.coupangcdn.com/image/product/201311/main3_dac64733-ce3a-4dec-aa50-652024b0b861.jpg" alt="" /></a>
+                                <span>딜 타이틀</span>
+                            </em>
+                            <strong><a href="/deal.pang?coupang=48822408&areacode=MB&order=3" order="3" data-cclick="Main,HOT_DEALX6_LEFT,1,3"><img src="http://img2.coupangcdn.com/image/product/201311/deal3_98a3f601-be48-4955-b59a-06f9575b880b.jpg" alt="" /></a></strong>
+                        </li>
+                        <li>
+                            <em>
+                                <a href="/deal.pang?coupang=48846346&areacode=MB&order=4" order="4" data-cclick="Main,HOT_DEALX6_RIGHT,1,4"><img src="http://img1.coupangcdn.com/image/product/201311/main4_23fe0afc-53bc-4579-b0be-0c460dcf6dc0.jpg" alt="" /></a>
+                                <span>딜 타이틀</span>
+                            </em>
+                            <strong><a href="/deal.pang?coupang=48846346&areacode=MB&order=4" order="4" data-cclick="Main,HOT_DEALX6_LEFT,1,4"><img src="http://img2.coupangcdn.com/image/product/201311/deal4_95fa729c-30f3-43cb-a75d-58b2c330d5b4.jpg" alt="" /></a></strong>
+                        </li>
+                        <li>
+                            <em>
+                                <a href="/deal.pang?coupang=49220476&areacode=MB&order=5" order="5" data-cclick="Main,HOT_DEALX6_RIGHT,1,5"><img src="http://img1.coupangcdn.com/image/product/201311/main5_d94464c5-3ee2-483a-ac34-e9283e0b4be7.jpg" alt="" /></a>
+                                <span>딜 타이틀</span>
+                            </em>
+                            <strong><a href="/deal.pang?coupang=49220476&areacode=MB&order=5" order="5" data-cclick="Main,HOT_DEALX6_LEFT,1,5"><img src="http://img1.coupangcdn.com/image/product/201311/deal5_19c40f81-1efc-4b44-adb9-19d5ceaba840.jpg" alt="" /></a></strong>
+                        </li>
+                        <li>
+                            <em>
+                                <a href="/deal.pang?coupang=49170085&areacode=MB&order=6" order="6" data-cclick="Main,HOT_DEALX6_RIGHT,1,6"><img src="http://img1.coupangcdn.com/image/product/201311/main6_4f237454-f15a-44af-b5ca-f55fa21bc7b0.jpg" alt="" /></a>
+                                <span>딜 타이틀</span>
+                            </em>
+                            <strong><a href="/deal.pang?coupang=49170085&areacode=MB&order=6" order="6" data-cclick="Main,HOT_DEALX6_LEFT,1,6"><img src="http://img2.coupangcdn.com/image/product/201311/deal6_1d86b05f-3883-486a-973b-066a20bda1d3.jpg" alt="" /></a></strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 개인화 영역 S -->
+<!-- 개인화 영역 S -->
+
+
+            <!-- 개인화 영역 E -->
+            <div class="main">
+                <div class="discovery">
+                    <h2>오늘의 발견</h2>
+                    <div class="contents" id="discovery">
+                        <div class="shopping">
+                            <h3><a href="/shopping.pang" data-cclick="MAIN,DISCOVERY_S,0">쇼핑</a></h3>
+                            <ul class="banner">
+                                <li action='hover' effect="shadow">
+                                    <a href="/deal.pang?coupang=49238363&areacode=MTDC&order=1" data-cclick="MAIN,DISCOVERY_S,2,1">
+                                        <img src="http://img1.coupangcdn.com/image/promotion/201311/promotion1_23c14440-f955-4a36-8a46-35f3af68eaac.jpg" alt="타이틀" />
+                                        <span class="move">바로가기</span>
+                                    
+									</a>
+                                </li>
+                                <li action='hover' effect="shadow">
+                                    <a href="/deal.pang?coupang=49153814&areacode=MTDC&order=2" data-cclick="MAIN,DISCOVERY_S,2,2">
+                                        <img src="http://img2.coupangcdn.com/image/promotion/201311/promotion2_61908992-98ec-4add-81a1-5008ad31adba.jpg" alt="타이틀" />
+                                        <span class="move">바로가기</span>
+                                    
+									</a>
+                                </li>
+                                <li action='hover' effect="shadow">
+                                    <a href="/deal.pang?coupang=49141265&areacode=MTDC&order=3" data-cclick="MAIN,DISCOVERY_S,2,3">
+                                        <img src="http://img1.coupangcdn.com/image/promotion/201311/promotion6_b910b30a-a0b9-45c7-98d1-3cc24a4514e8.jpg" alt="타이틀" />
+                                        <span class="move">바로가기</span>
+                                    
+									</a>
+                                </li>
+                                <li action='hover' effect="shadow">
+                                    <a href="/deal.pang?coupang=49178757&areacode=MTDC&order=4" data-cclick="MAIN,DISCOVERY_S,2,4">
+                                        <img src="http://img2.coupangcdn.com/image/promotion/201311/promotion5_3db26f8b-26ec-4b35-9151-caf64eb2b271.jpg" alt="타이틀" />
+                                        <span class="move">바로가기</span>
+                                    
+									</a>
+                                </li>
+                                <li action='hover' effect="shadow">
+                                    <a href="/deal.pang?coupang=49225046&areacode=MTDC&order=5" data-cclick="MAIN,DISCOVERY_S,2,5">
+                                        <img src="http://img2.coupangcdn.com/image/promotion/201311/promotion5_547084d6-0d80-4c6d-b1b2-8143b05f1dbf.jpg" alt="타이틀" />
+                                        <span class="move">바로가기</span>
+                                    
+									</a>
+                                </li>
+                                <li action='hover' effect="shadow">
+                                    <a href="/deal.pang?coupang=49141085&areacode=MTDC&order=6" data-cclick="MAIN,DISCOVERY_S,2,6">
+                                        <img src="http://img2.coupangcdn.com/image/promotion/201311/promotion3_664017aa-dcc9-4868-854d-d90f29a1063c.jpg" alt="타이틀" />
+                                        <span class="move">바로가기</span>
+                                    
+									</a>
+                                </li>
+                            </ul>
+                            <div class="location">
+                                <ul class="tab">
+                                    <li><a href="/alldeal.pang?type=B&tab=A" data-cclick="MAIN,DISCOVERY_S,1,1">의류</a></li>
+                                    <li><a href="/alldeal.pang?type=B&tab=B" data-cclick="MAIN,DISCOVERY_S,1,2">패션잡화</a></li>
+                                    <li><a href="/alldeal.pang?type=B&tab=C" data-cclick="MAIN,DISCOVERY_S,1,3">식품</a></li>
+                                    <li><a href="/alldeal.pang?type=B&tab=E" data-cclick="MAIN,DISCOVERY_S,1,4">생활/주방</a></li>
+                                    <li><a href="/baby.pang" data-cclick="MAIN,DISCOVERY_S,1,5">출산/유아동</a></li>
+                                </ul>
+                                <div class="selectbox">
+                                    <a href="javascript:;" class="selected">다른 카테고리 가기</a>
+                                    <ul>
+                                        <li><a href="/alldeal.pang?type=B&tab=F" data-cclick="MAIN,DISCOVERY_S,1,6">스포츠/레저</a></li>
+                                        <li><a href="/alldeal.pang?type=B&tab=D" data-cclick="MAIN,DISCOVERY_S,1,7">뷰티</a></li>
+                                        <li><a href="/alldeal.pang?type=B&tab=L" data-cclick="MAIN,DISCOVERY_S,1,8">홈인테리어/취미</a></li>
+                                        <li><a href="/alldeal.pang?type=B&tab=G,H" data-cclick="MAIN,DISCOVERY_S,1,9">디지털/가전</a></li>
+                                        <li><a href="/alldeal.pang?type=B&tab=K" data-cclick="MAIN,DISCOVERY_S,1,10">e쿠폰</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="travel">
+                            <h3><a href="/alldeal.pang?type=C" data-cclick="MAIN,DISCOVERY_T,0">여행</a></h3>
+                            <p action='hover' effect="shadow">
+                                <a href="/deal.pang?coupang=49182578&areacode=MTDC&order=1" data-cclick="MAIN,DISCOVERY_T,2,1">
+                                    <img src="http://img2.coupangcdn.com/image/promotion/201311/promotion1_343841e3-79da-4907-ad12-c3679ba8e4a3.jpg" alt="타이틀" />
+                                    <span class="move">바로가기</span>
+                                </a>
+                            </p>
+                        </div>
+
+                        <div class="culture">
+                            <h3><a href="/alldeal.pang?type=D" data-cclick="MAIN,DISCOVERY_C,0">문화</a></h3>
+                            <p action='hover' effect="shadow">
+                                <a href="/deal.pang?coupang=49069336&areacode=MTDC&order=1" data-cclick="MAIN,DISCOVERY_C,2,1">
+                                    <img src="http://img1.coupangcdn.com/image/promotion/201311/promotion1_5f4c528b-d788-4296-b036-2a4795d7defa.jpg" alt="타이틀" />
+                                    <span class="move">바로가기</span>
+                                </a>
+                            </p>
+                        </div>
+
+                        <div class="area">
+                            <h3><a href="/alldeal.pang?type=A" data-cclick="MAIN,DISCOVERY_L,0">지역</a></h3>
+                            <p action='hover' effect="shadow">
+                                <a href="/deal.pang?coupang=49077623&areacode=MTDC&order=1" data-cclick="MAIN,DISCOVERY_L,2,1">
+                                    <img src="http://img2.coupangcdn.com/image/promotion/201311/promotion1_6ccf89d9-539a-4482-aab9-2173eb1bf556.jpg" alt="타이틀" />
+                                    <span class="move">바로가기</span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="promotion">
+                    <h2>Coupang 기획전</h2>
+                    <div class="promotionList">
+                        <ul>
+                            <li>
+                                <div class="pannel">
+                                    	<a href="/promotion/prmt.pang?promotionId=256" data-cclick="BANNER,MAIN,0,0"><img src="http://img1.coupangcdn.com/image/product/201310/Url1_05a9e32f-55e0-4eb1-b775-64a2fb892490.jpg" alt="" width="310" height="148"/></a>
+                                    	<a href="/promotion/prmt.pang?promotionId=255" data-cclick="BANNER,MAIN,1,1"><img src="http://img1.coupangcdn.com/image/product/201310/Url1_f3d6574f-5639-4a16-900a-555e72bd6827.jpg" alt="" width="310" height="148"/></a>
+                                    	<a href="/promotion/prmt.pang?promotionId=265" data-cclick="BANNER,MAIN,2,2"><img src="http://img2.coupangcdn.com/image/product/201311/Url1_083bacfc-4cb4-4f88-9f72-04ff632768cd.jpg" alt="" width="310" height="148"/></a>
+                                </div>
+                                <a href="javascript:;" class="position" page="0"></a>
+                            </li>
+                            <li>
+                                <div class="pannel">
+                                    	<a href="/promotion/prmt.pang?promotionId=260" data-cclick="BANNER,MAIN,0,0"><img src="http://img2.coupangcdn.com/image/product/201311/Url1_9962814c-55f1-4d49-a77f-5e4a77bcecad.jpg" alt="" width="310" height="148"/></a>
+                                    	<a href="/promotion/prmt.pang?promotionId=261" data-cclick="BANNER,MAIN,1,1"><img src="http://img2.coupangcdn.com/image/product/201311/Url1_0301e828-99ae-4549-811a-bd4ac1aa3f88.jpg" alt="" width="310" height="148"/></a>
+                                    	<a href="/promotion/prmt.pang?promotionId=231" data-cclick="BANNER,MAIN,2,2"><img src="http://img1.coupangcdn.com/image/product/201310/Url1_39d331f5-bbe4-4360-b36e-2d07939ced4f.jpg" alt="" width="310" height="148"/></a>
+                                </div>
+                                <a href="javascript:;" class="position" page="1"></a>
+                            </li>
+                            <li>
+                                <div class="pannel">
+                                    	<a href="/promotion/prmt.pang?promotionId=264" data-cclick="BANNER,MAIN,0,0"><img src="http://img1.coupangcdn.com/image/product/201311/Url1_e8ce7be9-7dbb-447e-ab3e-8e330f9400d3.jpg" alt="" width="310" height="148"/></a>
+                                    	<a href="/promotion/prmt.pang?promotionId=266" data-cclick="BANNER,MAIN,1,1"><img src="http://img1.coupangcdn.com/image/product/201311/Url1_a60fbc4b-f99f-49da-ab6e-54d36b2e8a78.jpg" alt="" width="310" height="148"/></a>
+                                    	<a href="/promotion/prmt.pang?promotionId=130" data-cclick="BANNER,MAIN,2,2"><img src="http://img1.coupangcdn.com/image/product/201309/Url1_a0b3db4c-318f-4f45-a7a6-4ad96c2eade7.jpg" alt="" width="310" height="148"/></a>
+                                </div>
+                                <a href="javascript:;" class="position" page="2"></a>
+                            </li>
+                        </ul>
+                        <a href="javascript:;" class="move prev" title="prev">prev</a>
+                        <a href="javascript:;" class="move next" title="next">next</a>
+                    </div>
+                </div>
+                <div class="bestprod">
+                    <h2>Best 상품</h2>
+                    <div class="dealList">
+                        <ul>
+                            <li>
+    <a href="/deal.pang?coupang=49080218&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,0">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg"> 피부잡티 커버/커버 종결</p>
+
+            <p class="title"> [무료배송]마루빌츠 케머플라지 크림</p>
+            </dt>
+            <dd class="price">
+                    <strong class="percent"><span>50</span>%</strong>
+                <p>
+                    <span class="sales"><strong>11,000</strong>원</span>
+                        <span class="original"><del>22,000</del>원</span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>1,473</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image/dd/2/18/49080218_8c873be7-97d8-4a17-ad0f-430e52a3ed52.jpg" width="292" height="292" alt="[무료배송]마루빌츠 케머플라지 크림 /  피부잡티 완벽 커버 종결 컨실러" onclick="document.location.href='/deal.pang?coupang=49080218&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,0"/>
+			</dd>
+					<dd class="best top3 no1">1</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49244046&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,1">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">민감한 아기피부를 위한 </p>
+
+            <p class="title">자연유래성분 네츄럴오가닉 아기물티슈</p>
+            </dt>
+            <dd class="price">
+                    <strong class="percent"><span>21</span>%</strong>
+                <p>
+                    <span class="sales"><strong>990</strong>원</span>
+                        <span class="original"><del>1,250</del>원</span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>6,726</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image/dd/40/46/49244046_5939edd2-b2d3-422e-819f-33a20c28a1ad.jpg" width="292" height="292" alt="자연유래성분 네츄럴오가닉 아기물티슈" onclick="document.location.href='/deal.pang?coupang=49244046&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,1"/>
+			</dd>
+					<dd class="best top3 no2">2</dd>
+			<dd class="badge">
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+                                <div class="mallCoupon">
+                                    <h3><a href="/alldeal.pang?type=B&tab=K">e쿠폰</a></h3>
+                                    <ul class="view">
+                                        <li><a href="/deal.pang?coupang=47374096" data-cclick="MAIN,AD,0,0"><img src="http://img2.coupangcdn.com/image/adver/201310/1_c2550f94-eae9-4e8f-a309-76a1b2065306.jpg" alt="" width="298" height="87" /></a></li>
+                                        <li><a href="/deal.pang?coupang=48367385" data-cclick="MAIN,AD,0,1"><img src="http://img1.coupangcdn.com/image/adver/201311/12_2da16a54-abda-4656-a106-507b12f4dc2b.jpg" alt="" width="298" height="87" /></a></li>
+                                        <li><a href="/deal.pang?coupang=48434130" data-cclick="MAIN,AD,0,2"><img src="http://img2.coupangcdn.com/image/adver/201311/13_7ec00529-cfe4-4fd9-9fc9-fef79c762834.jpg" alt="" width="298" height="87" /></a></li>
+                                        <li><a href="/deal.pang?coupang=40110139" data-cclick="MAIN,AD,0,3"><img src="http://img2.coupangcdn.com/image/adver/201311/10_959a9350-c034-45e3-bb0a-425ff9a2048b.jpg" alt="" width="298" height="87" /></a></li>
+                                    </ul>
+                                    <ul >
+                                        <li><a href="/deal.pang?coupang=47374096" data-cclick="MAIN,AD,1,0"><img src="http://img1.coupangcdn.com/image/adver/201310/9_9d1d9706-35ad-440d-929b-118d76a7ec2b.jpg" alt="" width="298" height="87" /></a></li>
+                                        <li><a href="/deal.pang?coupang=48744936" data-cclick="MAIN,AD,1,1"><img src="http://img1.coupangcdn.com/image/adver/201311/13_0a40fc60-1958-410d-8d81-7443df09d640.jpg" alt="" width="298" height="87" /></a></li>
+                                        <li><a href="/deal.pang?coupang=47287695" data-cclick="MAIN,AD,1,2"><img src="http://img2.coupangcdn.com/image/adver/201311/12_e48eba71-d340-4683-af8d-e2d4255ba266.jpg" alt="" width="298" height="87" /></a></li>
+                                        <li><a href="/deal.pang?coupang=46943986" data-cclick="MAIN,AD,1,3"><img src="http://img1.coupangcdn.com/image/adver/201311/16_2d8cd497-f01f-4b58-8b78-09fa8c8a8010.jpg" alt="" width="298" height="87" /></a></li>
+                                    </ul>
+                                    <ul >
+                                        <li><a href="/deal.pang?coupang=47374096" data-cclick="MAIN,AD,2,0"><img src="http://img2.coupangcdn.com/image/adver/201310/13_7d58c80c-0bc1-40eb-877a-81554e71e5c5.jpg" alt="" width="298" height="87" /></a></li>
+                                        <li><a href="/deal.pang?coupang=48658713" data-cclick="MAIN,AD,2,1"><img src="http://img2.coupangcdn.com/image/adver/201311/15_d5e5395b-19cd-4ab2-b442-09ca074981f1.jpg" alt="" width="298" height="87" /></a></li>
+                                        <li><a href="/deal.pang?coupang=40501538" data-cclick="MAIN,AD,2,2"><img src="http://img2.coupangcdn.com/image/adver/201311/15_7c292bd2-f9cd-4920-9788-ac6a21242c1a.jpg" alt="" width="298" height="87" /></a></li>
+                                        <li><a href="/deal.pang?coupang=48803244" data-cclick="MAIN,AD,2,3"><img src="http://img2.coupangcdn.com/image/adver/201311/16_7c229ff7-f8f2-4b57-90b3-25d733e84d6c.jpg" alt="" width="298" height="87" /></a></li>
+                                    </ul>
+                                    <ul >
+                                        <li><a href="/deal.pang?coupang=47374096" data-cclick="MAIN,AD,3,0"><img src="http://img1.coupangcdn.com/image/adver/201310/5_7d6b2ba2-970a-4f72-84d5-3d0c707c981b.jpg" alt="" width="298" height="87" /></a></li>
+                                        <li><a href="/deal.pang?coupang=41845172" data-cclick="MAIN,AD,3,1"><img src="http://img1.coupangcdn.com/image/adver/201310/16_94afc240-2856-4b7f-ba5f-e3edf9d91ebd.jpg" alt="" width="298" height="87" /></a></li>
+                                        <li><a href="/deal.pang?coupang=48357106" data-cclick="MAIN,AD,3,2"><img src="http://img2.coupangcdn.com/image/adver/201311/12_f6e1ddfd-8210-478e-b822-ff9d32b73b2c.jpg" alt="" width="298" height="87" /></a></li>
+                                        <li><a href="/deal.pang?coupang=48667474" data-cclick="MAIN,AD,3,3"><img src="http://img1.coupangcdn.com/image/adver/201311/14_58fb0e04-c28e-47fb-98f5-ddee9cceb5fa.jpg" alt="" width="298" height="87" /></a></li>
+                                    </ul>
+                                    <div class="couponpaging">
+                                        <p><strong>1</strong>/<span></span></p>
+                                        <span class="move">
+                                            <a href="javascript:;" class="prev">prev</a>
+                                            <a href="javascript:;" class="next">next</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49172702&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,2">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">등산/레저 아웃도어</p>
+
+            <p class="title">낫소 등산복/패딩/양말/슬레진저 폴라티</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>16,800</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>880</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image//estimation/2013/11/13/20131112160331c257f9b9-52a5-4e0b-9fbc-c551906097ba.jpg" width="292" height="292" alt="낫소 등산복/패딩/양말/슬레진저 폴라티셔츠! 겨울맞이 신상!" onclick="document.location.href='/deal.pang?coupang=49172702&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,2"/>
+			</dd>
+					<dd class="best top3 no3">3</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49144813&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,3">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">여유있는 핏의 트렌디 아우터!</p>
+
+            <p class="title">[무료배송] 마크막스 자켓/코트/점퍼</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>25,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>434</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image/dd/48/13/49144813_28324634-0c95-4bae-983d-9fce465ca860.jpg" width="292" height="292" alt="[무료배송] HOT! 마크막스 신상 자켓/코트/점퍼 여유있는 핏의 트렌디 아우터!" onclick="document.location.href='/deal.pang?coupang=49144813&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,3"/>
+			</dd>
+					<dd class="best no4">4</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49217167&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,4">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">다양한 컬러! 다양한 디자인!</p>
+
+            <p class="title">[무료배송] 스타일딘 따뜻한 기모팬츠</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>22,800</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>318</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image//estimation/2013/11/14/20131111174846cd3da700-138e-47a2-a942-0e83f1f94417.jpg" width="292" height="292" alt="[무료배송] 스타일딘 보온성 업! 따뜻한 기모팬츠" onclick="document.location.href='/deal.pang?coupang=49217167&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,4"/>
+			</dd>
+					<dd class="best no5">5</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49238363&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,5">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">온가족의 활력을 위해 </p>
+
+            <p class="title">녹십자HS 비타민C1000 아연D</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>14,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>526</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image//estimation/2013/11/14/2013111313004525c9b7bb-1ac7-4894-bbe9-59c1f6c0ee9e.jpg" width="292" height="292" alt="[무료배송] 녹십자HS 비타민C1000 아연D" onclick="document.location.href='/deal.pang?coupang=49238363&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,5"/>
+			</dd>
+					<dd class="best no6">6</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49239877&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,6">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">내가 조선의 기모다! 절대보온</p>
+
+            <p class="title">슈가펀 실속 레깅스! 융/피치 레깅스</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>6,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>672</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image/dd/98/77/49239877_2f39ead3-c8c8-479c-9ec4-639eb0917527.jpg" width="292" height="292" alt="[3+스타킹] 슈가펀 기모/양털 레깅스 핫딜! 날씬핏! 절대보온!" onclick="document.location.href='/deal.pang?coupang=49239877&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,6"/>
+			</dd>
+					<dd class="best no7">7</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49141265&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,7">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">고소한 치즈와 고구마가~</p>
+
+            <p class="title">[무료배송]구워먹는 치즈떡/고구마떡</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>24,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+                    <p class="unitPrice">(=&nbsp;&nbsp;<strong>2,490</strong>원&nbsp;x&nbsp;<strong>10</strong>개)
+                    </p>
+            </dd>
+            <dd class="buy">
+                        <em>533</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image//estimation/2013/11/12/20131106100658e3bc5dba-6fba-49ae-b8ff-fb42aa61d215.jpg" width="292" height="292" alt="[무료배송]구워먹는 치즈떡/고구마떡" onclick="document.location.href='/deal.pang?coupang=49141265&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,7"/>
+			</dd>
+					<dd class="best no8">8</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49159871&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,8">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">아디다스 BULKY/LPB다운</p>
+
+            <p class="title">아디다스13년 신상BULKY/LPB다운</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>64,000</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>60</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image/dd/98/71/49159871_30d27e80-ba4b-432c-8da0-775575c74b2e.jpg" width="292" height="292" alt="아디다스 13년 신상 BULKY입고/LPB다운" onclick="document.location.href='/deal.pang?coupang=49159871&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,8"/>
+			</dd>
+					<dd class="best no9">9</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49185639&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,9">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">따뜻한 롱부츠/기모 안감 부츠</p>
+
+            <p class="title">[무료배송] 르뮤 국내제작 인기 롱부츠</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>29,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>284</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image//estimation/2013/11/14/20131111193002e3c109dd-9a55-4c14-b8d0-9e8e4a87cbc3.jpg" width="292" height="292" alt="[무료배송]Lemu 르뮤 국내제작 따뜻한 롱부츠" onclick="document.location.href='/deal.pang?coupang=49185639&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,9"/>
+			</dd>
+					<dd class="best no10">10</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=48579599&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,10">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">국내생산으로 믿을수 있는!</p>
+
+            <p class="title">[겨울신상] 미니치치 맨투맨/레깅스</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>5,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>1,408</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image/dd/95/99/48579599_7ff1eaf1-d255-4854-b67d-0a20fd47ebbb.JPG" width="292" height="292" alt="[겨울신상] 미니치치 완벽겨울코디! 티셔츠/맨투맨/바지" onclick="document.location.href='/deal.pang?coupang=48579599&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,10"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49214977&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,11">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">남성의류를 전하는 새로운 방식</p>
+
+            <p class="title">[무료배송] 모니즈 빅사이즈 아우터</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>59,700</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>133</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image/dd/49/77/49214977_86f162d7-bd06-44fd-9c63-5eb6b9b3d735.jpg" width="292" height="292" alt="[무료배송] 모니즈/S.P 빅사이즈 겨울 아우터 (S~3XL)" onclick="document.location.href='/deal.pang?coupang=49214977&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,11"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49153814&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,12">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">올록볼록 입체 캐릭터</p>
+
+            <p class="title">귀여운 디즈니 초음파 가습기 2종</p>
+            </dt>
+            <dd class="price">
+                    <strong class="percent"><span>17</span>%</strong>
+                <p>
+                    <span class="sales"><strong>19,900</strong>원</span>
+                        <span class="original"><del>24,000</del>원</span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>217</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image/dd/38/14/49153814_553cd72a-70f7-458c-ab75-58dc9df75534.jpg" width="292" height="292" alt="[무료배송] 귀여운 디즈니 초음파 가습기 2종" onclick="document.location.href='/deal.pang?coupang=49153814&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,12"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=48887138&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,13">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">엄마가 만든 명작</p>
+
+            <p class="title">매일유업 앱솔루트명작 3단계/4단계</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>19,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>324</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image//estimation/2013/11/05/20131108121310f5fef456-4f25-4b38-bad9-f149e04c2370.jpg" width="292" height="292" alt="매일유업 앱솔루트명작 3단계/4단계 800gX1캔" onclick="document.location.href='/deal.pang?coupang=48887138&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,13"/>
+			</dd>
+			<dd class="badge">
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49257595&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,14">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">누구보다 소중한 당신의 그날</p>
+
+            <p class="title">유한킴벌리 좋은느낌 / 화이트 생리대 </p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>3,600</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>863</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image//estimation/2013/11/14/20131111133657d8b34380-8eb8-4960-8d50-aaeb6eae24a1.jpg" width="292" height="292" alt="유한킴벌리 좋은느낌 / 화이트 생리대" onclick="document.location.href='/deal.pang?coupang=49257595&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,14"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49220476&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,15">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">간지나는 유아복!</p>
+
+            <p class="title">엠메이드 베이비 겨울신상 외출복</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>19,800</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>965</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image//estimation/2013/11/14/20131112183449cef410af-9084-4ef5-b47b-a78add4536c8.jpg" width="292" height="292" alt="엠메이드 베이비 겨울신상 외출복" onclick="document.location.href='/deal.pang?coupang=49220476&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,15"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49133642&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,16">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">천연과즙함유</p>
+
+            <p class="title">[무료배송]웰치스 젤리</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>23,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>1,204</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image//estimation/2013/11/12/20131111185703a379d692-1b86-4b7a-80b1-9cad6ae328bb.GIF" width="292" height="292" alt="[무료배송]천연과즙함유 웰치스 젤리" onclick="document.location.href='/deal.pang?coupang=49133642&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,16"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49246873&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,17">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">놀라운 이벤트 털부츠 모카신</p>
+
+            <p class="title">[무료배송]스노우베어 털부츠+모카신세트</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>23,800</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>293</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image/dd/68/73/49246873_859f872a-150a-49a5-b2e4-b2e3b71b0a10.jpg" width="292" height="292" alt="[무료배송]스노우베어 털부츠+모카신 세트 이벤트" onclick="document.location.href='/deal.pang?coupang=49246873&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,17"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49178757&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,18">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">추울 때 꼭 껴안고 자요 </p>
+
+            <p class="title">[겨울신상] 인형/바디필로우/슬리퍼</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>36,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>358</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image//estimation/2013/11/13/20131112103211139f2f95-91a9-413e-ade0-b21775bcf7e9.jpg" width="292" height="292" alt="[겨울신상] 대형인형/바디필로우/슬리퍼 선물하기 딱좋은!" onclick="document.location.href='/deal.pang?coupang=49178757&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,18"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49158095&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,19">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">메리 크리스마스 한방에 해결</p>
+
+            <p class="title">[무료배송]100%솔트리크리스마스트리 </p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>47,800</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>499</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image//estimation/2013/11/13/20131112131314c092c26d-c80d-4139-b684-519c178906a5.jpg" width="292" height="292" alt="[무료배송]100%솔트리 크리스마스트리 풀세트" onclick="document.location.href='/deal.pang?coupang=49158095&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,19"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49172000&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,20">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">선착순 500명 사은품증정</p>
+
+            <p class="title">[무료배송] 다나한 팔자주름크림 1+1</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>37,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>632</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image/dd/20/0/49172000_47a9b17f-26af-4276-be06-74058d53ec32.jpg" width="292" height="292" alt="[무료배송] 다나한 팔자주름크림 2개 선착순 500명 사은품증정" onclick="document.location.href='/deal.pang?coupang=49172000&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,20"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49077623&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,21">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">1만원 이용권(소멸식) 기준</p>
+
+            <p class="title">[6개지점] 코푸플레이트</p>
+            </dt>
+            <dd class="price">
+                    <strong class="percent"><span>50</span>%</strong>
+                <p>
+                    <span class="sales"><strong>5,000</strong>원</span>
+                        <span class="original"><del>10,000</del>원</span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>1,602</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image/dd/76/23/49077623_f3d57618-1715-4a4b-b41a-3a2e3ac1cfd6.jpg" width="292" height="292" alt="[6개지점] 코푸플레이트" onclick="document.location.href='/deal.pang?coupang=49077623&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,21"/>
+			</dd>
+			<dd class="badge">
+						<span class="todayopen">오늘오픈</span>
+                    <span class="usenow">바로사용</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49057569&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,22">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">자연스럽고 촉촉한 피부!</p>
+
+            <p class="title">[무료배송]아이오페 에어쿠션 XP</p>
+            </dt>
+            <dd class="price">
+                    <strong class="percent"><span>30</span>%</strong>
+                <p>
+                    <span class="sales"><strong>27,900</strong>원</span>
+                        <span class="original"><del>40,000</del>원</span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>2,012</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image/dd/75/69/49057569_0f4637b4-5036-413f-b9bc-ed13eb0b818e.jpg" width="292" height="292" alt="[무료배송]아이오페 에어쿠션 XP" onclick="document.location.href='/deal.pang?coupang=49057569&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,22"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49172355&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,23">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">귀요미 아이언맨 나를 지켜줘</p>
+
+            <p class="title">[무료배송]아이언맨 이어폰플러그/피규어</p>
+            </dt>
+            <dd class="price">
+                    <strong class="percent"><span>17</span>%</strong>
+                <p>
+                    <span class="sales"><strong>29,000</strong>원</span>
+                        <span class="original"><del>35,000</del>원</span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>588</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image//estimation/2013/11/14/20131112160155755ed496-0c27-439d-987a-aeb9e024f839.jpg" width="292" height="292" alt="[무료배송]아이언맨 이어폰플러그/피규어" onclick="document.location.href='/deal.pang?coupang=49172355&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,23"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49089482&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,24">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">국내제작 프리미엄</p>
+
+            <p class="title">[무료배송] 앵콜 매그샵 더블빅머플러!</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>9,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>1,178</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image//estimation/2013/11/13/201311081416103f4ee721-f4ae-4a64-9035-a7a8b3e3c959.jpg" width="292" height="292" alt="[무료배송] 매그샵 국내제작 프리미엄 더블빅머플러!!" onclick="document.location.href='/deal.pang?coupang=49089482&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,24"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49128883&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,25">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">디자인/품질 모두 만족!</p>
+
+            <p class="title">멜리스 30수/20수 유아동 내의</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>7,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>1,929</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image//estimation/2013/11/13/201311111640055e181912-b16e-4ea8-9923-ae624e7250c6.jpg" width="292" height="292" alt="멜리스 30수/20수 유아동 내의" onclick="document.location.href='/deal.pang?coupang=49128883&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,25"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=48915307&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,26">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">전상품 무료배송</p>
+
+            <p class="title">천우바지 겨울 아동 패딩/기모팬츠</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>32,700</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>215</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image//estimation/2013/11/06/20131106152320550c075f-a7c5-4db2-b879-baf9c02cdb85.jpg" width="292" height="292" alt="[무료배송]천우바지 겨울 아동 패딩/기모팬츠" onclick="document.location.href='/deal.pang?coupang=48915307&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,26"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=48908029&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,27">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">포근한 인조양모 트레이닝!</p>
+
+            <p class="title">PINK 양털/기모/벨벳 트레이닝SET</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>39,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>1,203</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image/dd/80/29/48908029_98706778-d5a7-47cd-a198-e2feeae9f407.jpg" width="292" height="292" alt="PINK 신상 트레이닝 SET! 양털/기모/벨로아 트레이닝복" onclick="document.location.href='/deal.pang?coupang=48908029&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,27"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49226415&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,28">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">입는 순간, 따뜻함이 시작된다</p>
+
+            <p class="title">[무료배송]아식스 다운패딩 한정수량</p>
+            </dt>
+            <dd class="price">
+                    <strong class="percent"><span>60</span>%</strong>
+                <p>
+                    <span class="sales"><strong>68,000</strong>원</span>
+                        <span class="original"><del>170,000</del>원</span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>598</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image/dd/64/15/49226415_068cd4a3-c79d-4e03-a374-ed0c97387d1d.jpg" width="292" height="292" alt="[무료배송]아식스 다운 패딩/패딩자켓 한정수량 특가" onclick="document.location.href='/deal.pang?coupang=49226415&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,28"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49250133&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,29">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">대박 득템 찬스!</p>
+
+            <p class="title">[평창] 휘닉스파크객실1박+주간권2매</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>129,000</strong>원</span>
+                        <span class="original"><del></del></span>
+                    <span class="detail">주중 기준</span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>76</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image/dd/1/33/49250133_2067992a-705b-4c2b-9fca-ba0cbd71fcff.jpg" width="292" height="292" alt="[평창] 휘닉스파크 객실 1박 + 리프트주간권 2매 (곤돌라 이용가능)" onclick="document.location.href='/deal.pang?coupang=49250133&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,29"/>
+			</dd>
+			<dd class="badge">
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=48897834&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,30">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">뉴욕 스타일링 패션</p>
+
+            <p class="title">[무료배송]단군 뉴요커스타일 코디패션</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>39,800</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>1,878</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image//estimation/2013/11/12/2013110811203794cb7782-3c1c-4d5d-88df-e36b7cc984ac.jpg" width="292" height="292" alt="[무료배송]단군 뉴요커 스타일 자켓/코트/헤링본/남방/팬츠" onclick="document.location.href='/deal.pang?coupang=48897834&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,30"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49217606&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,31">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">블루투스 한계를 뛰어넘다.</p>
+
+            <p class="title">앵콜!노벨뷰 블루투스 휴대용스피커 </p>
+            </dt>
+            <dd class="price">
+                    <strong class="percent"><span>22</span>%</strong>
+                <p>
+                    <span class="sales"><strong>34,900</strong>원</span>
+                        <span class="original"><del>44,900</del>원</span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>188</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image//estimation/2013/11/14/20131112161018f9f0aaca-9384-4512-85ea-dd2765bc7a77.jpg" width="292" height="292" alt="앵콜!노벨뷰 블루투스 휴대용스피커 NS770" onclick="document.location.href='/deal.pang?coupang=49217606&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,31"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49232210&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,32">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">스테디셀러 워커힐 앵클 모음</p>
+
+            <p class="title">[무료배송]나인퀸 워커 / 스니커즈</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>17,800</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>416</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image//estimation/2013/11/14/20131111232717548cda8f-d99f-4c69-bbb7-d170a8fd645b.jpg" width="292" height="292" alt="[무료배송]나인퀸 인기 워커 / 스니커즈 스테디셀러" onclick="document.location.href='/deal.pang?coupang=49232210&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,32"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49133675&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,33">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">나 너 사고싶었다! 추웠어..</p>
+
+            <p class="title">[무료배송] 겨울 털 실내화/슬리퍼</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>5,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>2,685</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image//estimation/2013/11/13/20131111174037e526350e-0824-4dfe-a84b-6b52b2ff467d.jpg" width="292" height="292" alt="[겨울필수] 나 너 신고싶니?/겨울 털실내화/슬리퍼" onclick="document.location.href='/deal.pang?coupang=49133675&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,33"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49232461&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,34">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">균일가 워커 부티힐 앵클슈즈</p>
+
+            <p class="title">[무료배송] SU 베스트 워커/워커힐</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>19,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>190</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image//estimation/2013/11/14/20131112212805709e1cae-1f0d-458e-867c-73bd516a4195.jpg" width="292" height="292" alt="[무료배송] SU 베스트 워커/워커힐 모음 균일가전" onclick="document.location.href='/deal.pang?coupang=49232461&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,34"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49144865&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,35">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">매일 아침 머리에 향을 품다</p>
+
+            <p class="title">[모닝팡] 케라시스 퍼퓸 샴푸/린스</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>4,500</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>413</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image//estimation/2013/11/08/2013110713231573846557-79b5-414d-8c55-ba71e5e2ac58.jpg" width="292" height="292" alt="[모닝팡] 케라시스 퍼퓸 샴푸/린스 600ml" onclick="document.location.href='/deal.pang?coupang=49144865&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,35"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49219443&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,36">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">겨울에도 돋보이는 완벽한 핏!</p>
+
+            <p class="title">[무료배송] 플랜제이 겨울신상 원피스 </p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>14,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>147</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image//estimation/2013/11/12/2013111220472198216c82-69ae-478e-b9a3-15461af65002.jpg" width="292" height="292" alt="[무료배송] 플랜제이 겨울신상 원피스 / 겨울에도 돋보이는 완벽한 핏" onclick="document.location.href='/deal.pang?coupang=49219443&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,36"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=48920824&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,37">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">한파대비! 발열내의by장광효</p>
+
+            <p class="title">장광효 카루소 남녀 보온/발열내의 상하</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>8,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>1,156</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image/dd/8/24/48920824_4eb04a21-2f98-4c02-9cf4-8d960ca84f64.jpg" width="292" height="292" alt="장광효 카루소 남녀 보온/발열내의 상하SET" onclick="document.location.href='/deal.pang?coupang=48920824&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,37"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49226510&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,38">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">스포츠/레저 보호대</p>
+
+            <p class="title">K2 방한/안전용품 월동 준비</p>
+            </dt>
+            <dd class="price">
+                    <strong class="percent"><span>39</span>%</strong>
+                <p>
+                    <span class="sales"><strong>6,000</strong>원</span>
+                        <span class="original"><del>9,800</del>원</span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>394</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image//estimation/2013/11/13/20131111162507c45cd046-2a0d-43a2-9192-5361726eedf0.jpg" width="292" height="292" alt="K2 방한/안전용품 월동 준비하세요!" onclick="document.location.href='/deal.pang?coupang=49226510&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,38"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=48765255&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,39">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">[무료배송/무료반품] 옐로</p>
+
+            <p class="title">[By쿠팡] 옐로 웜히트 발열 티/하의</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>9,800</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>11,686</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image/dd/52/55/48765255_89811386-0ab8-4a31-98d9-43b8826ee204.jpg" width="292" height="292" alt="[By 쿠팡] YELO 옐로 웜히트 발열 티셔츠/발열 하의" onclick="document.location.href='/deal.pang?coupang=48765255&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,39"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49074051&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,40">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">속도빠른 충전용품 모음</p>
+
+            <p class="title">충전기에도LTE-A가 있다면 팝폰충전기</p>
+            </dt>
+            <dd class="price">
+                    <strong class="percent"><span>50</span>%</strong>
+                <p>
+                    <span class="sales"><strong>2,300</strong>원</span>
+                        <span class="original"><del>4,600</del>원</span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>1,458</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image//estimation/2013/11/14/2013111113170546f1be93-ed45-4f41-b6a9-839829b679e3.jpg" width="292" height="292" alt="충전기에도 LTE-A가 있다면 팝폰 충전기" onclick="document.location.href='/deal.pang?coupang=49074051&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,40"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=48427961&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,41">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">아기피부에 순하고 부드러운</p>
+
+            <p class="title">NEW 보솜이 천연코튼 기저귀</p>
+            </dt>
+            <dd class="price">
+                    <strong class="percent"><span>34</span>%</strong>
+                <p>
+                    <span class="sales"><strong>24,900</strong>원</span>
+                        <span class="original"><del>38,000</del>원</span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>3,821</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image//estimation/2013/11/04/20131030145845eb354185-9b18-4de4-8d39-d331f4eaa8da.jpg" width="292" height="292" alt="[무료배송]보솜이 천연코튼 기저귀/ 4팩이상 구매시 구매금액별사은품증정" onclick="document.location.href='/deal.pang?coupang=48427961&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,41"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=48822408&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,42">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">품위를 담은 따뜻함</p>
+
+            <p class="title">[무료배송] 김영주 덕다운 패팅점퍼</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>69,000</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>178</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image/dd/24/8/48822408_91e8bdd6-7003-4a34-8680-cc7260d31fff.jpg" width="292" height="292" alt="[무료배송] 김영주 덕다운/구스다운 남녀 패딩점퍼 품위와 따뜻함을 동시에!" onclick="document.location.href='/deal.pang?coupang=48822408&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,42"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49136522&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,43">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">발이 시려워 꽁! 이제 옛말~</p>
+
+            <p class="title">[무료배송] 보들보들 엠보싱 털슬리퍼</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>2,600</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>847</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image/dd/65/22/49136522_aa24d9a5-d55a-40d5-ae41-ae999a118874.jpg" width="292" height="292" alt="[무료배송] 보들보들 엠보싱 실내 슬리퍼 사무실에서 학교에서 인기만점! 털 실내화" onclick="document.location.href='/deal.pang?coupang=49136522&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,43"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49238521&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,44">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">헤어와 눈썹 컬러를 맞추자!</p>
+
+            <p class="title">키스미 마스카라 외 브라운 메이크업 </p>
+            </dt>
+            <dd class="price">
+                    <strong class="percent"><span>43</span>%</strong>
+                <p>
+                    <span class="sales"><strong>10,800</strong>원</span>
+                        <span class="original"><del>19,000</del>원</span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>256</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image/dd/84/71/42978471_6babc35e-a263-41a2-bee1-6e7fed8f51ae.jpg" width="292" height="292" alt="키스미 브라운 마스카라 외 / 헤어와 눈썹 컬러는 맞춰주는 센스!" onclick="document.location.href='/deal.pang?coupang=49238521&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,44"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=48914899&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,45">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">선착순800명 깜찍팬티증정</p>
+
+            <p class="title">배냇베이비 유아동내의/실내복</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>7,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>1,769</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image//estimation/2013/11/11/20131108163309db55118c-1703-43f4-9f4d-b914567ff581.jpg" width="292" height="292" alt="[선착순사은품증정]배냇베이비 유아동내의/실내복" onclick="document.location.href='/deal.pang?coupang=48914899&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,45"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49048289&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,46">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">따뜻한 월동준비</p>
+
+            <p class="title">스네피코튼 유아동 스노우워머/빕/목도리</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>6,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>5,978</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image//estimation/2013/11/11/2013111102050801496a42-c468-4947-be9e-c8095947d1c8.jpg" width="292" height="292" alt="스네피코튼 유아동 스노우워머/빕/목도리" onclick="document.location.href='/deal.pang?coupang=49048289&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,46"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=48898189&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,47">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">다양한 상품구성</p>
+
+            <p class="title">[무료배송]코디/아일렛 F/W시즌 암막</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>13,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>606</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image//estimation/2013/11/08/201311061828474dbfe4fe-7c24-4f8d-8adc-ff0109384516.jpg" width="292" height="292" alt="[무료배송]코디/아일렛 F/W시즌 암막커튼 30컬러" onclick="document.location.href='/deal.pang?coupang=48898189&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,47"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49082935&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,48">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">올겨울을 책임질 아우터 특집</p>
+
+            <p class="title">[무료배송]따뜻한 양털사파리/모직/코트</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>38,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>495</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image//estimation/2013/11/13/20131111154905e4f28fc6-9ab5-4163-8ee3-88a4d431da5d.jpg" width="292" height="292" alt="[무료배송] 앗추워! 따뜻한 양털사파리/모직/퍼코트 올겨울을 책임질 아우터 특집" onclick="document.location.href='/deal.pang?coupang=49082935&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,48"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=48841457&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,49">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">앵콜특가! 다양한 사은품까지</p>
+
+            <p class="title">[무료배송] 훈민 베스트전집 17종특가</p>
+            </dt>
+            <dd class="price">
+                    <strong class="percent"><span>88</span>%</strong>
+                <p>
+                    <span class="sales"><strong>29,800</strong>원</span>
+                        <span class="original"><del>240,000</del>원</span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>755</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image/dd/14/57/48841457_28271e23-2d92-46f2-9348-369ba2d89f8b.jpg" width="292" height="292" alt="[무료배송] 훈민출판 베스트 유아동전집 17종 특가전" onclick="document.location.href='/deal.pang?coupang=48841457&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,49"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49147147&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,50">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">프리미엄 양털 후드</p>
+
+            <p class="title">[무료배송] DICOVERY 겨울 신상</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>32,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>209</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image/dd/71/47/49147147_36498ded-9a23-4238-b6d9-af90c27cbc02.jpg" width="292" height="292" alt="[무료배송] DICOVERY 겨울 신상 프리미엄 양털 후드/트레이닝팬츠" onclick="document.location.href='/deal.pang?coupang=49147147&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,50"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49168129&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,51">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">따뜻한 고퀄리티 패딩점퍼</p>
+
+            <p class="title">[무료배송] 올겨울은 모니즈 패딩점퍼와</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>46,800</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>44</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image/dd/81/29/49168129_314bc649-e1b4-4e80-bc27-1f0effb01dc3.jpg" width="292" height="292" alt="[무료배송] 올겨울은 모니즈 고퀄리티 패딩점퍼와 함께" onclick="document.location.href='/deal.pang?coupang=49168129&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,51"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+						<span class="todayopen">오늘오픈</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49122414&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,52">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">핏감좋은 레깅스 스페셜! </p>
+
+            <p class="title">[3+기모레깅스] 기모/융털/치마레깅스</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>4,900</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>1,474</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image//estimation/2013/11/11/201311061010052cd1c37e-74ce-41d8-8c7d-bf7e21f61a7e.jpg" width="292" height="292" alt="[3+기모레깅스] 따뜻한 기모/융털/치마레깅스 핏감좋은 레깅스 스페셜!" onclick="document.location.href='/deal.pang?coupang=49122414&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,52"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49147930&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,53">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">연아의 프로스펙스</p>
+
+            <p class="title">[무료배송]프로스펙스 매력만점 슈즈</p>
+            </dt>
+            <dd class="price">
+                    <strong class="percent"><span>45</span>%</strong>
+                <p>
+                    <span class="sales"><strong>37,800</strong>원</span>
+                        <span class="original"><del>69,000</del>원</span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>205</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image//estimation/2013/11/13/20131112113133b8e31880-87b9-4972-8251-95721b0c38af.jpg" width="292" height="292" alt="[무료배송]프로스펙스 매력만점 BEST 슈즈" onclick="document.location.href='/deal.pang?coupang=49147930&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,53"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=48416797&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,54">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">자연의 맛 그대로~</p>
+
+            <p class="title">[무료배송]고품격 한줌견과 디넛츠</p>
+            </dt>
+            <dd class="price">
+                    <strong class="percent"><span>42</span>%</strong>
+                <p>
+                    <span class="sales"><strong>35,400</strong>원</span>
+                        <span class="original"><del>60,700</del>원</span>
+                </p>
+                    <p class="unitPrice">(=&nbsp;&nbsp;<strong>590</strong>원&nbsp;x&nbsp;<strong>60</strong>개)
+                    </p>
+            </dd>
+            <dd class="buy">
+                        <em>1,643</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image//estimation/2013/11/04/20131031143014230c27c5-652a-448c-9901-dccd4e41a2a2.jpg" width="292" height="292" alt="[무료배송]고품격 한줌견과 디넛츠/프리미엄" onclick="document.location.href='/deal.pang?coupang=48416797&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,54"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=48909400&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,55">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">카모/와펜/퍼 야상/자켓</p>
+
+            <p class="title">[무료배송]여성 트렌드 아우터 모음! </p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>39,800</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>253</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image/dd/94/0/48909400_48234551-cf01-42f3-ac8d-796da34438be.jpg" width="292" height="292" alt="[무료배송] 여성 야상/자켓 모음! 카모/와펜 트렌드 아우터!" onclick="document.location.href='/deal.pang?coupang=48909400&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,55"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=48765626&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,56">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">2+1 머플러 증정</p>
+
+            <p class="title">[무료배송] 인디오 겨울 기모 셔츠</p>
+            </dt>
+            <dd class="price">
+                    <strong class="dealtype special"></strong>
+                <p>
+                    <span class="sales"><strong>17,800</strong>원</span>
+                        <span class="original"><del></del></span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>4,333</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img2.coupangcdn.com/image//estimation/2013/11/11/20131104113631890d7f2a-40aa-4620-b867-e2b1c92e14bc.jpg" width="292" height="292" alt="[무료배송] 인디오 겨울신상 기모남방 M~4XL /2+1머플러증정" onclick="document.location.href='/deal.pang?coupang=48765626&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,56"/>
+			</dd>
+			<dd class="badge">
+								<span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=48605151&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,57">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">더욱 강력해진 보온효과!!</p>
+
+            <p class="title">3S 단열뽁뽁이 / 단열 시트</p>
+            </dt>
+            <dd class="price">
+                    <strong class="percent"><span>50</span>%</strong>
+                <p>
+                    <span class="sales"><strong>3,300</strong>원</span>
+                        <span class="original"><del>6,600</del>원</span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>8,719</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image//estimation/2013/11/01/20131031150828891b0714-d524-4344-bfa0-826617cc169f.jpg" width="292" height="292" alt="3S 단열뽁뽁이" onclick="document.location.href='/deal.pang?coupang=48605151&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,57"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                            <li>
+    <a href="/deal.pang?coupang=49143680&areacode=MRC" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,58">
+        <dl class="dealContents">
+            <dt>
+            <p class="descMsg">쾌적한 차안공기 만들기</p>
+
+            <p class="title">자동차 에어컨/히터 공기정화필터</p>
+            </dt>
+            <dd class="price">
+                    <strong class="percent"><span>17</span>%</strong>
+                <p>
+                    <span class="sales"><strong>3,500</strong>원</span>
+                        <span class="original"><del>4,200</del>원</span>
+                </p>
+            </dd>
+            <dd class="buy">
+                        <em>3,167</em> 개구매중
+            </dd>
+            <dd class="thumnail">
+                <!-- 품절 -->
+					<img src="http://img1.coupangcdn.com/image//estimation/2013/11/12/201311090245068d2e0445-2d08-4269-8eea-00d723eadf3c.jpg" width="292" height="292" alt="자동차 에어컨/히터 공기정화필터 모음전" onclick="document.location.href='/deal.pang?coupang=49143680&areacode=MRC'" data-cclick="MAIN_IMAGEVIEW,RECOMMEND,,58"/>
+			</dd>
+			<dd class="badge">
+
+                            <span class="bgEvent fixed" title="무료배송">무료배송</span>
+            </dd>
+        </dl>
+    </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="coupangAd">
+                    <h2>Coupang AD</h2>
+                    <div class="adList">
+                        <ul>
+                            <li><a href="/48434130&main_ad_deal" data-cclick="MAIN,AD_DEAL,1"  ><img src="http://img1.coupangcdn.com/image/banner/201311/left_c0a58f8f-c04d-4ab1-9266-982d627eef6b.jpg" alt="" /></a></li>
+                            <li><a href="/47374096&main_ad_deal" data-cclick="MAIN,AD_DEAL,2"  ><img src="http://img2.coupangcdn.com/image/banner/201311/left_e3cf0618-8428-4f1f-b56f-d9a15674d515.jpg" alt="" /></a></li>
+                            <li><a href="/46381694&main_ad_deal" data-cclick="MAIN,AD_DEAL,3"  ><img src="http://img1.coupangcdn.com/image/banner/201311/left_9150d314-9d23-4648-9747-83a5df0ee4fb.jpg" alt="" /></a></li>
+                            <li><a href="/48192723&main_ad_deal" data-cclick="MAIN,AD_DEAL,4"  ><img src="http://img2.coupangcdn.com/image/banner/201311/left_9a476bb3-b654-4d90-96a2-e64ceffb9983.jpg" alt="" /></a></li>
+                            <li><a href="/38339790&main_ad_deal" data-cclick="MAIN,AD_DEAL,5"  ><img src="http://img1.coupangcdn.com/image/banner/201311/left_f1248ff2-bf0f-453f-a99d-a06ab36e4849.jpg" alt="" /></a></li>
+                            <li><a href="/47759917&main_ad_deal" data-cclick="MAIN,AD_DEAL,6"  ><img src="http://img2.coupangcdn.com/image/banner/201311/left_6f38b9ec-eb1f-490a-8182-16099b8e157b.jpg" alt="" /></a></li>
+                            <li><a href="/47852464&main_ad_deal" data-cclick="MAIN,AD_DEAL,7"  ><img src="http://img2.coupangcdn.com/image/banner/201311/left_1a1751d9-8318-4117-baf0-0b71556c8796.jpg" alt="" /></a></li>
+                            <li><a href="/47395508&main_ad_deal" data-cclick="MAIN,AD_DEAL,8"  ><img src="http://img1.coupangcdn.com/image/banner/201311/left_aa2a7bea-ee0a-4e96-ab89-b3775de4a15d.jpg" alt="" /></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="cetegory">
+                    <div class="cetegoryList" id="categoryList">
+                        <dl class="shopping">
+                            <dt><a href="/shopping.pang">쇼핑</a></dt>
+                            <dd>
+                                <ul>
+                                    <li><a href="/shopping.pang" data-cclick="MAIN,CATEGORY_MENU,1" >쇼핑 Best</a></li>
+                                    <li><a href="/alldeal.pang?type=B&tab=A" data-cclick="MAIN,CATEGORY_MENU,2" >의류</a></li>
+                                    <li><a href="/alldeal.pang?type=B&tab=B" data-cclick="MAIN,CATEGORY_MENU,3" >패션잡화</a></li>
+                                    <li><a href="/alldeal.pang?type=B&tab=F" data-cclick="MAIN,CATEGORY_MENU,4" >스포츠/레저</a></li>
+                                    <li><a href="/alldeal.pang?type=B&tab=C" data-cclick="MAIN,CATEGORY_MENU,5" >식품</a></li>
+                                    <li><a href="/alldeal.pang?type=B&tab=D" data-cclick="MAIN,CATEGORY_MENU,6" >뷰티</a></li>
+                                    <li><a href="/alldeal.pang?type=B&tab=E" data-cclick="MAIN,CATEGORY_MENU,7" >생활/주방</a></li>
+                                </ul>
+                                <ul>
+                                    <li><a href="/alldeal.pang?type=B&tab=L" data-cclick="MAIN,CATEGORY_MENU,8" >홈인테리어/취미</a></li>
+                                    <li><a href="/alldeal.pang?type=B&tab=G,H" data-cclick="MAIN,CATEGORY_MENU,9" >디지털/가전</a></li>
+                                    <li><a href="/baby.pang" data-cclick="MAIN,CATEGORY_MENU,10" >출산/유아동</a></li>
+                                    <li><a href="/alldeal.pang?type=B&tab=K" data-cclick="MAIN,CATEGORY_MENU,11" >e쿠폰</a></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        <dl class="area">
+                            <dt><a href="/local.pang">지역</a></dt>
+                            <dd>
+                                <ul>
+                                    <li><a href="/local.pang" data-cclick="MAIN,CATEGORY_MENU,29" >지역 Best</a></li>
+                                    <li><a href="/alldeal.pang?type=A&tab=A,B" data-cclick="MAIN,CATEGORY_MENU,19" >전국/서울</a></li>
+                                    <li><a href="/alldeal.pang?type=A&tab=C,D" data-cclick="MAIN,CATEGORY_MENU,20" >인천/경기</a></li>
+                                    <li><a href="/alldeal.pang?type=A&tab=E,F,G,H" data-cclick="MAIN,CATEGORY_MENU,21" >대구/부산</a></li>
+                                    <li><a href="/alldeal.pang?type=A&tab=I,J,K,L,M,N" data-cclick="MAIN,CATEGORY_MENU,22" >대전/광주</a></li>
+                                    <li><a href="/alldeal.pang?type=A&tab=O,P" data-cclick="MAIN,CATEGORY_MENU,23" >강원/제주</a></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        <dl class="travel">
+                            <dt><a href="/alldeal.pang?type=C">여행/레저</a></dt>
+                            <dd>
+                                <ul>
+                                    <li><a href="/alldeal.pang?type=C" data-cclick="MAIN,CATEGORY_MENU,12" >전체</a></li>
+                                    <li><a href="/alldeal.pang?type=C&tab=A" data-cclick="MAIN,CATEGORY_MENU,13" >해외여행</a></li>
+                                    <li><a href="/alldeal.pang?type=C&tab=B" data-cclick="MAIN,CATEGORY_MENU,14" >국내여행</a></li>
+                                    <li><a href="/alldeal.pang?type=C&tab=C" data-cclick="MAIN,CATEGORY_MENU,15" >제주여행</a></li>
+                                    <li><a href="/alldeal.pang?type=C&tab=F" data-cclick="MAIN,CATEGORY_MENU,16" >레저/입장권</a></li>
+                                    <li><a href="/alldeal.pang?type=C&tab=D" data-cclick="MAIN,CATEGORY_MENU,17" >숙박</a></li>
+                                    <li><a href="/alldeal.pang?type=C&tab=G" data-cclick="MAIN,CATEGORY_MENU,18" >프리미엄</a></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        <dl class="culture">
+                            <dt><a href="/alldeal.pang?type=D">문화</a></dt>
+                            <dd>
+                                <ul>
+                                    <li><a href="/alldeal.pang?type=D" data-cclick="MAIN,CATEGORY_MENU,24">전체</a></li>
+                                    <li><a href="/alldeal.pang?type=D&cate3=A" data-cclick="MAIN,CATEGORY_MENU,25">뮤지컬/연극</a></li>
+                                    <li><a href="/alldeal.pang?type=D&cate3=B" data-cclick="MAIN,CATEGORY_MENU,26">콘서트/클래식</a></li>
+                                    <li><a href="/alldeal.pang?type=D&cate3=C" data-cclick="MAIN,CATEGORY_MENU,27">체험/전시/아동</a></li>
+                                    <li><a href="/alldeal.pang?type=D&cate3=D" data-cclick="MAIN,CATEGORY_MENU,28">영화/스포츠</a></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <ul class="contact">
+                    <li class="recruit"><a href="https://coupang.saramin.co.kr/_service/zlight/apply_site/apply/intro.asp">쿠팡채용</a></li>
+                    <li class="partner"><a href="/partnershipInfo.pang">입점/제휴문의</a></li>
+                    <li class="mobile"><a href="/mobileServiceGuide.pang">쿠팡 모바일 App</a></li>
+                    <li class="notice"><a href="/csFaq.pang">공지사항</a></li>
+                </ul>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    //핫딜 영역 설정 및 롤링
+                    var rollingView=new RollingHotDealView(new HotDealView('#home .todayList', 1));
+                    rollingView.start(2000);
+
+                    // 쿠팡 기획전
+                    var promotion = new CoupangPromotion();
+                    promotion.movePanel(0);
+
+                    //
+                    mallcoupon();
+                });
+            </script>
+        </div>
+        	<iframe  	style="position: absolute;z-index: -2;" 
+ src="mainInflow.pang?tid=NOU7&grp=1" width="0" height="0" frameborder="0"></iframe>         
+
+    <div id="footer" class="">
+		<div class="footerTop">		
+			<ul class="footerMenu clearFix">
+				<li class="menuItem menuItem1"><a href="/coupangIntroduce.pang" data-cclick="FOOTER,INTRODUCE,1,">회사소개</a></li>
+				<li class="menuItem menuItem2"><a href="/partnershipInfo.pang" data-cclick="FOOTER,PARTNERINFO,1,">입점제휴문의</a></li>
+				<li class="menuItem menuItem3"><a href="/license.pang" data-cclick="FOOTER,POLICY,1,">이용약관</a></li>
+				<li class="menuItem menuItem4"><a href="/license.pang?searchType=2" data-cclick="FOOTER,POLICY,2,">개인정보 취급방침</a></li>
+				<li class="menuItem menuItem5"><a href="/license.pang?searchType=3" data-cclick="FOOTER,POLICY,3,">이메일 무단수집거부</a></li>
+				<li class="menuItem menuItem6"><a href="/license.pang?searchType=5" data-cclick="FOOTER,POLICY,5,">청소년 보호 정책</a></li>
+				<li class="csCenter"><a href="/csFaq.pang">365 고객센터</a></li>
+			</ul>
+		</div>
+		<div class="footerBottom">
+			<div class="logo">
+				<a href="http://www.coupang.com/">쿠팡홈</a>
+			</div>
+			<div class="coupangInfo">
+					<p>(주)포워드벤처스 | 대표이사 : 김범석 | 사업자 등록번호 : 120-88-00767<a class="checkReg" href="http://www.ftc.go.kr/info/bizinfo/communicationViewPopup.jsp?wrkr_no=1208800767" target="_new" data-cclick="FOOTER,BUSINESS,1,">사업자정보 확인</a></p>
+					<p>통신판매업신고 : 2013-서울강남-02121 | 개인정보관리책임자 : 김봉술 <a href="mailto:help@coupang.com" class="nobg">help@coupang.com</a></p>
+					<p>서울시 강남구 테헤란로 501 | Tel : 1577-7011 | Fax : 02-3441-7011</p>
+					<p class="copyRight">© Forward Ventures Co.,Ltd. All rights reserved.</p>
+				<ul class="coupangSns clearFix">
+					<li class="coupangFb"><a href="http://www.facebook.com/pages/Coupang/149885735024609?v=page_getting_started&ref=sgm#!/pages/Coupang/149885735024609?v=wall&ref=sgm" target="_blank" data-cclick="FOOTER,FACEBOOK,1,">쿠팡페이스북</a></li>
+					<li class="coupangTwt"><a href="http://twitter.com/coupang" target="_blank" data-cclick="FOOTER,TWITTER,1,">쿠팡트위터</a></li>
+				</ul>
+			</div>
+			<div class="wooriCertified">
+				<p>우리은행 채무지급보증 안내 당사는 고객님이 현금 결제한 금액에 대해 우리은행과 채무지급보증 계약을 체결하여 안전거래를 보장하고 있습니다.</p>
+				<a href="javascript:footer.popupServiceJoinIdentify('http://www.coupang.com/escrow.pang');" data-cclick="FOOTER,LGUPLUS,1,">서비스 가입사실 확인</a>
+			</div>
+			<ul class="coupangAwards clearFix">
+	            <li class="award award1"><a href="/coupangNewsDetail.pang?noticeSrl=632&searchType=&searchValue=&page=1">한국능률협회컨설팅 주관 한국산업의 고객만족 1위</a></li>
+	            <li class="award award2"><a href="/coupangNewsDetail.pang?noticeSrl=143">소비자 신뢰 부문 수상</a></li>
+	            <li class="award award3"><a href="/coupangNewsDetail.pang?noticeSrl=536&searchType=&searchValue=&page=1">제2회 모바일 브랜드 대상</a></li>
+	            <li class="award award4"><a href="/coupangNewsDetail.pang?noticeSrl=267&searchType=&searchValue=&page=1">한국 소비자 만족지수 1위</a></li>
+	            <li class="award award5"><a href="/coupangNewsDetail.pang?noticeSrl=248&searchType=&searchValue=&page=1">국가 브랜드 대상 수상</a></li>
+	            <li class="award award6"><a href="/coupangNewsDetail.pang?noticeSrl=433&searchType=&searchValue=&page=1">정보보호 관리체계 ISMS 획득</a></li>
+	            <li class="award award7"><a href="/coupangNewsDetail.pang?noticeSrl=432&searchType=&searchValue=&page=1">개인정보보호 관리체계 PIMS 획득</a></li>
+	            <li class="award award8"><a href="/coupangNewsDetail.pang?noticeSrl=565&searchType=&searchValue=&page=1">정보보안 국제표준 ISO27001 인증획득</a></li>
+	            <li class="award award9"><a href="http://www.kolsa.or.kr" target="_blank">한국온라인쇼핑협회 정회원사</a></li>
+	        </ul>
+		</div>
+		<style>
+            #layerAlertPop {
+                display: none;
+                position: fixed;
+                top: 35%;
+                left: 50%;
+                margin-left: -206px;
+            }
+
+            #layerAlertPop .main {
+                position: relative;
+                z-index: 3000;
+            }
+
+            #layerAlertPop .main .top {
+                position: relative;
+                width: 412px;
+                height: 93px;
+                background:
+                    url('http://static.coupangcdn.com/image/static/www/common/bg_layer_popup_top.png')
+                    no-repeat;
+            }
+
+            #layerAlertPop .main .top p {
+                position: absolute;
+                top: 10px;
+                right: 12px;
+                width: 24px;
+                height: 24px;
+                cursor: pointer;
+            }
+
+            #layerAlertPop .main .bot {
+                width: 412px;
+                height: 52px;
+                padding-top: 37px;
+                background:
+                    url('http://static.coupangcdn.com/image/static/www/common/bg_layer_popup_bot.png')
+                    no-repeat;
+                text-align: center
+            }
+
+            #layerAlertPop .main .middle {
+                width: 352px;
+                padding: 15px 30px 0;
+                background:
+                    url('http://static.coupangcdn.com/image/static/www/common/bg_layer_popup_middle.gif')
+                    repeat-y;
+                line-height: 150%;
+            }
+
+            #deemed,.deemed {
+                position: fixed;
+                _position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #000;
+                filter: Alpha(opacity = 60);
+                opacity: 0.5;
+            }
+		</style>
+        <div id="layerAlertPop">
+            <div class="main">
+                <div class="top"><p></p></div>
+                <div class="middle"></div>
+                <div class="bot"><img src="http://img2.coupangcdn.com/image/www/common/btn_layer_popup.gif" width="118" height="39" alt="닫기" class="hand" /></div>
+            </div>
+            <div id="deemed"></div>
+        </div>
+        <iframe id="frameSellingArea" width="0" height="0" frameborder="0"></iframe>
+
+    </div>
+</div>
+
+<script type='text/javascript'>
+    $(document).ready(function(){
+        var cclick = new cClick();
+        var sclick = new SClick();
+    });
+</script>
+<!-- WISELOG ONLINE TRACKING SCRIPT CODE START -->
+<!-- DO NOT MODIFY THIS SCRIPT CODE. -->
+<!-- COPYRIGHT (C) 1999-2010 NETHRU INC. ALL RIGHTS RESERVED. -->
+<script src="/resources/js/wlo.js?_s=7d28b5554a1961e1c47fe8c599dd1213" type="text/javascript"></script>
+<script src="/resources/wow/js/wiseLog.js?_s=0721207e1e6dfa8314f4fe2f2ea4d5fa" type="text/javascript"></script>
+<!-- WISELOG ONLINE TRACKING SCRIPT CODE END -->
+
+<!-- google-analytics start -->
+<script src="/resources/wow/js/googleAnalytics.js?_s=67f7c0fecb596c0e2f5721eede796c09" type="text/javascript"></script>
+<!-- google-analytics end -->
+
+        	<iframe  	style="position: absolute;z-index: -2;" 
+ src="allcoupangInflow.pang?tid=NOU7&grp=1" width="0" height="0" frameborder="0"></iframe>         
+</body>
+</html>
