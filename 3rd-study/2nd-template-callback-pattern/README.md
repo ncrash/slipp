@@ -10,8 +10,13 @@
     * 티몬 : 오늘의 추천
 
 ## 작업진행 계획
+### 진행 완료
 * 위 3가지 페이지를 HTML로 아카이브
-* socialProductDAO 인터페이스를 만들고 1가지 메소드 선언
+* HTML 파일을 읽어서 목록을 추출하는 심플 메소드 구현
+* 각 사이트별로 코드 중복되도록 구현
+
+### 진행예정
+* SocialProduct 객체를 만들고 1가지 메소드 선언
 * jsoupCoupangSocialProductDAO 클래스를 통해 구현체 작성
     * 나머지 사이트의 구현테도 동일하게 작성
 * 각 클래스별로 각각 "Load a Document from a File" 처리 및 결과 List<String> 리턴
