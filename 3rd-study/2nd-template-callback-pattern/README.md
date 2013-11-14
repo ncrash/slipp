@@ -1,7 +1,7 @@
 # jsoup을 이용한 템플릿/콜백 패턴실습
 
 ## 목적
-* 책을 통해 배운내용을 실제로 적용해보면서 몸으로 체득하기
+* 책을 통해 템플릿/콜백에 대해 배운 내용을 실습해보면서 몸으로 체득하기
 
 ## 목표
 * 국내 대표 소셜 사이트 Top 3 메인페이지에 뜨는 상품 5가지 목록 가져오기
@@ -23,3 +23,4 @@
 * gradle base
     * 권남님의 gradle-tutorial을 활용해서 진행
     * 이 문서를 좀 더 발전시킨 [Rocking the gradle](https://github.com/ihoneymon/rocking-the-gradle) 참조.
+	* 프로젝트 인코딩과 profile 설정을 위해 [DEV용식](http://devyongsik.tistory.com)님의 [spring-data-jpa-project-template](https://github.com/need4spd/spring-data-jpa-project-template/blob/master/build.gradle) 참고
