@@ -37,6 +37,8 @@ List loggers = [
     "ch.qos.logback:logback-classic:${logbackVersion}"
 ]
 
+buildDir = 'build'
+ 
 sourceCompatibility = javaVersion
 targetCompatibility = javaVersion
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
@@ -82,6 +84,7 @@ task initProject << {
 eclipse {
         classpath {
                 downloadSources=true
+                defaultOutputDir = file("${buildDir}/classes/main")
         }
 
         jdt {
