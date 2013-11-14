@@ -23,6 +23,8 @@ ext {
     
 	slf4jVersion = '1.7.5'
 	logbackVersion = '1.0.13'
+	jsoupVersion = '1.7.2'
+	
 	junitVersion = '4.11'
 }
 
@@ -42,6 +44,8 @@ targetCompatibility = javaVersion
 // In this section you declare the dependencies for your production and test code
 dependencies {
 	compile loggers
+	
+	compile "org.jsoup:jsoup:${jsoupVersion}"
 	
     // Declare the dependency for your favourite test framework you want to use in your tests.
     // TestNG is also supported by the Gradle Test task. Just change the
