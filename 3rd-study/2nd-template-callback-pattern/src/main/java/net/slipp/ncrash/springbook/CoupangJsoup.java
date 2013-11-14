@@ -10,9 +10,9 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class HelloWorldJSoup {
+public class CoupangJsoup {
 
-	final static Logger logger = LoggerFactory.getLogger(HelloWorldJSoup.class);
+	final static Logger logger = LoggerFactory.getLogger(CoupangJsoup.class);
 	/**
 	 * @param args
 	 */
