@@ -1,5 +1,6 @@
 package net.slipp.ncrash.springbook;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.jsoup.Jsoup;
@@ -18,7 +19,8 @@ public class HelloWorldJSoup {
 	public static void main(String[] args) {
 		Document doc;
 		try {
-			doc = Jsoup.connect("http://www.coupang.com/").get();
+			File input = new File("/Users/ncrash/Development/repos/git/slipp/3rd-study/2nd-template-callback-pattern/src/test/resources/coupang.html");
+			doc = Jsoup.parse(input, "UTF-8", "http://www.coupang.com");
 			
 			Element content = doc.getElementsByClass("todayList").first();
 			Elements links = content.getElementsByTag("a");
