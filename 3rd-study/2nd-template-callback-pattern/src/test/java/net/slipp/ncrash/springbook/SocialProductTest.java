@@ -1,5 +1,8 @@
 package net.slipp.ncrash.springbook;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+
 import java.util.List;
 
 import org.junit.Before;
@@ -26,6 +29,7 @@ public class SocialProductTest {
 		List<String> todayProductList = sp.coupang(this.siteFilePath, "http://www.coupang.com");
 		
 		logger.debug("coupang today product : " + todayProductList.toString());
+		assertThat(todayProductList.size(), is(5));
 	}
 	
 	@Test
@@ -36,6 +40,7 @@ public class SocialProductTest {
 		List<String> todayProductList = sp.wemakeprice(this.siteFilePath, "http://www.wemakeprice.com");
 		
 		logger.debug("wemakeprice today product : " + todayProductList.toString());
+		assertThat(todayProductList.size(), is(5));
 	}
 	
 	@Test
@@ -46,5 +51,6 @@ public class SocialProductTest {
 		List<String> todayProductList = sp.tmon(this.siteFilePath, "http://www.ticketmonster.co.kr");
 		
 		logger.debug("tmon today product : " + todayProductList.toString());
+		assertThat(todayProductList.size(), is(5));
 	}
 }

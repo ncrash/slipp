@@ -13,19 +13,25 @@ import org.jsoup.select.Elements;
 public class SocialProduct {
 	public List<String> coupang(String filePath, String baseUri) {
 		List<String> todayProducts = new ArrayList<String>();
-		
+
+		int count = 0;
 		Document doc;
 		try {
 			File input = new File(filePath);
 			doc = Jsoup.parse(input, "UTF-8", baseUri);
-			
+
 			Element content = doc.getElementsByClass("todayList").first();
 			Elements links = content.getElementsByTag("a");
 			for (Element link : links) {
-			  String linkHref = link.attr("href");
-			  String linkText = link.text();
-			  
-			  todayProducts.add(linkHref);
+				if (count >= 5) {
+					break;
+				}
+
+				String linkHref = link.attr("href");
+				String linkText = link.text();
+
+				todayProducts.add(linkHref);
+				count++;
 			}
 		} catch (NullPointerException e) {
 			// TODO Auto-generated catch block
@@ -36,22 +42,29 @@ public class SocialProduct {
 		}
 		return todayProducts;
 	}
-	
+
 	public List<String> wemakeprice(String filePath, String baseUri) {
 		List<String> todayProducts = new ArrayList<String>();
-		
+
+		int count = 0;
 		Document doc;
 		try {
 			File input = new File(filePath);
 			doc = Jsoup.parse(input, "UTF-8", baseUri);
-			
+
 			Element content = doc.getElementById("tplBigPaging");
 			Elements links = content.getElementsByTag("a");
 			for (Element link : links) {
-			  String linkHref = link.attr("href");
-			  String linkText = link.text();
-			  
-			  todayProducts.add(linkHref);
+				if (count >= 5) {
+					break;
+				}
+				
+				String linkHref = link.attr("href");
+				String linkText = link.text();
+
+				todayProducts.add(linkHref);
+				
+				count++;
 			}
 		} catch (NullPointerException e) {
 			// TODO Auto-generated catch block
@@ -62,22 +75,28 @@ public class SocialProduct {
 		}
 		return todayProducts;
 	}
-	
+
 	public List<String> tmon(String filePath, String baseUri) {
 		List<String> todayProducts = new ArrayList<String>();
-		
+
+		int count = 0;
 		Document doc;
 		try {
 			File input = new File(filePath);
 			doc = Jsoup.parse(input, "UTF-8", baseUri);
-			
+
 			Element content = doc.getElementsByClass("deal_lst_roll_dt").first();
 			Elements links = content.getElementsByTag("a");
 			for (Element link : links) {
-			  String linkHref = link.attr("href");
-			  String linkText = link.text();
-			  
-			  todayProducts.add(linkHref);
+				if (count >= 5) {
+					break;
+				}
+				
+				String linkHref = link.attr("href");
+				String linkText = link.text();
+
+				todayProducts.add(linkHref);
+				count++;
 			}
 		} catch (NullPointerException e) {
 			// TODO Auto-generated catch block
