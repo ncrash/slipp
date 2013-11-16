@@ -26,6 +26,7 @@ ext {
 	jsoupVersion = '1.7.2'
 	
 	junitVersion = '4.11'
+	hamcrestVersion = '1.3'
 }
 
 List loggers = [
@@ -54,6 +55,8 @@ dependencies {
     // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
     // 'test.useTestNG()' to your build script.
     testCompile "junit:junit:${junitVersion}"
+    testCompile "org.hamcrest:hamcrest-all:${hamcrestVersion}"
+            
 }
 
 // commons-logging, log4j, jul 의존성 제거
