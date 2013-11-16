@@ -24,7 +24,7 @@
 	* `git reset --hard step_01`
 	* HTML 파일을 읽어서 목록을 추출하는 심플 메소드 구현
 * step_02
-	* `git reset --hard step_01`
+	* `git reset --hard step_02`
 	* 반복되는 부분 템플릿 생성 및 콜백으로 실제 처리해야하는 로직 전달
 * origin/master
 	* `git reset --hard origin/master`
