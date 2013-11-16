@@ -14,11 +14,20 @@
 * HTML 파일을 읽어서 목록을 추출하는 심플 메소드 구현
 	* SocialProduct 객체 생성
 	* 각 사이트별로 상품 목록 가져오는 코드 중복되도록 구현
-* 각 클래스별로 각각 "Load a Document from a File" 처리 및 결과 List<String> 리턴
 	* 한 클래스에서 각 사이트별로 구현로직 작성
+* 각 메소드별로 "Load a Document from a File" 처리 및 결과 List<String> 리턴
 * 반복되는 부분과 반복되지 않는 부분 추출
-* 반복되는 부분 템플릿 생성
-* 콜백으로 실제 처리해야하는 로직 전달
+* 반복되는 부분 템플릿 생성 및 콜백으로 실제 처리해야하는 로직 전달
+
+## Tag
+* step_01
+	* `git reset --hard step_01`
+	* HTML 파일을 읽어서 목록을 추출하는 심플 메소드 구현
+* step_02
+	* `git reset --hard step_01`
+	* 반복되는 부분 템플릿 생성 및 콜백으로 실제 처리해야하는 로직 전달
+* origin/master
+	* `git reset --hard origin/master`
 
 ## 프로젝트 구성
 * gradle base
