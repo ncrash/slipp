@@ -8,6 +8,10 @@
     * 쿠팡 : 오늘의 추천
     * 위메프 : 오늘의 위메프 추천
     * 티몬 : 오늘의 추천
+* Step_03
+	* Element를 가져오는 부분을 css selector로 개선
+	* SocialProduct 클래스에 있는 소셜사이트 처리 3가지 메소드 리팩토링
+	* Enum을 적용해 css selector, baseUri 속성은 Enum에서 관리하도록 개선
 
 ## 작업진행 계획
 * 위 3가지 페이지를 HTML로 아카이브
