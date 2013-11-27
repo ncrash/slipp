@@ -25,7 +25,7 @@ public class SocialProductTest {
 	@Test
 	public void coupang() throws Exception {
 		this.siteFilePath = getClass().getClassLoader().getResource("coupang.html").getPath();
-		List<String> todayProductList = this.socialProduct.coupang(this.siteFilePath, SocialSite.COUPANG.getBaseUri());
+		List<String> todayProductList = this.socialProduct.getTop5Product(SocialSite.COUPANG, this.siteFilePath);
 		
 		logger.debug("coupang today product : " + todayProductList.toString());
 		assertThat(todayProductList.size(), is(5));
@@ -39,7 +39,7 @@ public class SocialProductTest {
 	@Test
 	public void wemakeprice() throws Exception {
 		this.siteFilePath = getClass().getClassLoader().getResource("wemakeprice.html").getPath();
-		List<String> todayProductList = this.socialProduct.wemakeprice(this.siteFilePath, SocialSite.WE_MAKE_PRICE.getBaseUri());
+		List<String> todayProductList = this.socialProduct.getTop5Product(SocialSite.WE_MAKE_PRICE, this.siteFilePath);
 		
 		logger.debug("wemakeprice today product : " + todayProductList.toString());
 		assertThat(todayProductList.size(), is(5));
@@ -53,7 +53,7 @@ public class SocialProductTest {
 	@Test
 	public void tmon() throws Exception {
 		this.siteFilePath = getClass().getClassLoader().getResource("tmon.html").getPath();
-		List<String> todayProductList = this.socialProduct.tmon(this.siteFilePath, SocialSite.TICKET_MONSTER.getBaseUri());
+		List<String> todayProductList = this.socialProduct.getTop5Product(SocialSite.TICKET_MONSTER, this.siteFilePath);
 		
 		logger.debug("tmon today product : " + todayProductList.toString());
 		assertThat(todayProductList.size(), is(5));
