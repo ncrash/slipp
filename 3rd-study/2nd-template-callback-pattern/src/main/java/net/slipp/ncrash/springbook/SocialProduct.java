@@ -15,8 +15,7 @@ public class SocialProduct {
 		ContentElementCallBack callback = new ContentElementCallBack() {
 			@Override
 			public Element doGetProductElementWithDocument(Document doc) throws Exception {
-//				Element content = doc.getElementsByClass("todayList").first();
-				Element content = doc.select("div.todayList:first-child").first();
+				Element content = doc.select(SocialSite.COUPANG.getTop5ProductCssSelector()).first();
 				return content;
 			}
 		};
@@ -28,8 +27,7 @@ public class SocialProduct {
 		ContentElementCallBack callback = new ContentElementCallBack() {
 			@Override
 			public Element doGetProductElementWithDocument(Document doc) throws Exception {
-//				Element content = doc.getElementById("tplBigPaging");
-				Element content = doc.select("div.main_banner.list_img").first();
+				Element content = doc.select(SocialSite.WE_MAKE_PRICE.getTop5ProductCssSelector()).first();
 				return content;
 			}
 		};
@@ -41,8 +39,7 @@ public class SocialProduct {
 		ContentElementCallBack callback = new ContentElementCallBack() {
 			@Override
 			public Element doGetProductElementWithDocument(Document doc) throws Exception {
-//				Element content = doc.getElementsByClass("deal_lst_roll_dt").first();
-				Element content = doc.getElementsByClass("div.deal_lst_roll_dt:first-child").first();
+				Element content = doc.select(SocialSite.TICKET_MONSTER.getTop5ProductCssSelector()).first();
 				return content;
 			}
 		};
