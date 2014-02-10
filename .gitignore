@@ -6,6 +6,10 @@ target
 .settings
 .classpath
 
+# IntelliJ Files #
+.idea
+*.iml
+
 # Vagrant Files #
 .vagrant
 
