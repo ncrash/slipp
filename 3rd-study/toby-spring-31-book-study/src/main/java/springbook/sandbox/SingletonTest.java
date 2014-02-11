@@ -3,6 +3,7 @@ package springbook.sandbox;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import org.springframework.context.support.GenericXmlApplicationContext;
 import springbook.user.dao.DaoFactory;
 import springbook.user.dao.UserDao;
  
@@ -17,9 +18,9 @@ public class SingletonTest {
         System.out.println(dao2);
 
         // 리스트 1-21 스프링 컨텍스트로부터 가져온 오브젝트 출력 코드
-        ApplicationContext context = new AnnotationConfigApplicationContext(DaoFactory.class);
+        ApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml");
 
-		System.out.println(context.getBean(UserDao.class));
-		System.out.println(context.getBean(UserDao.class));
+		System.out.println(context.getBean("userDao", UserDao.class));
+		System.out.println(context.getBean("userDao", UserDao.class));
 	}
 }

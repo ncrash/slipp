@@ -22,4 +22,5 @@ dependencies {
     compile "org.springframework:spring-context:${springFrameworkVersion}"
     compile "org.springframework:spring-core:${springFrameworkVersion}"
     compile "org.springframework:spring-expression:${springFrameworkVersion}"
+    compile "org.springframework:spring-jdbc:${springFrameworkVersion}"
 }
