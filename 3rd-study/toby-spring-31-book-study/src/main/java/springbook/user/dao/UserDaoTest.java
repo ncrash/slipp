@@ -18,7 +18,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="/test-applicationContext.xml")
-@DirtiesContext
 public class UserDaoTest {
     @Autowired
     ApplicationContext context;
