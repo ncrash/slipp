@@ -4,16 +4,13 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import springbook.user.domain.User;
 
-import javax.sql.DataSource;
 import java.sql.SQLException;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -26,7 +23,6 @@ public class UserDaoTest {
     @Autowired
     ApplicationContext context;
 
-    @Autowired
     private UserDao dao;
 
     private User user1;
@@ -35,12 +31,12 @@ public class UserDaoTest {
 
     @Before
     public void setUp() {
-        DataSource dataSource = new SingleConnectionDataSource("jdbc:mysql://localhost/springbook?characterEncoding=UTF-8", "spring", "book", true);
-        dao.setDataSource(dataSource);
+        this.dao = this.context.getBean("userDao", UserDao.class);
 
         this.user1 = new User("gyumee", "박성철", "springno1");
         this.user2 = new User("leegw700", "이길원", "springno2");
         this.user3 = new User("bumjin", "박범진", "springno3");
+
     }
 
     @Test
