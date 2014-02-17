@@ -20,6 +20,7 @@ dependencies {
     compile "org.springframework:spring-asm:${springFrameworkVersion}"
     compile "org.springframework:spring-beans:${springFrameworkVersion}"
     compile "org.springframework:spring-context:${springFrameworkVersion}"
+    compile "org.springframework:spring-context-support:${springFrameworkVersion}"
     compile "org.springframework:spring-core:${springFrameworkVersion}"
     compile "org.springframework:spring-expression:${springFrameworkVersion}"
     compile "org.springframework:spring-jdbc:${springFrameworkVersion}"
