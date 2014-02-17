@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class UserDaoJdbc {
+public class UserDaoJdbc implements UserDao {
     private JdbcTemplate jdbcTemplate;
 
     public void setDataSource(DataSource dataSource) {
