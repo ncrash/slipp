@@ -3,9 +3,6 @@ package springbook.user.domain;
 public enum Level {
     GOLD(3, null), SILVER(2, GOLD), BASIC(1, SILVER);
 
-    public static final int MIN_LOGCOUNT_FOR_SILVER = 50;
-    public static final int MIN_RECCOMEND_FOR_GOLD = 30;
-
     private final int value;
     private final Level next;
 
