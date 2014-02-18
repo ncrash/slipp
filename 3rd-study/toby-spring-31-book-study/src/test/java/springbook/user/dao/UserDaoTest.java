@@ -2,7 +2,6 @@ package springbook.user.dao;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.junit.Assert.assertThat;
 
 import java.sql.SQLException;
@@ -26,7 +25,7 @@ import springbook.user.domain.Level;
 import springbook.user.domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations="/test-applicationContext.xml")
+@ContextConfiguration(locations= "/test-applicationContext.xml")
 public class UserDaoTest {
     @Autowired UserDao dao;
     @Autowired DataSource dataSource;
