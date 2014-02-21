@@ -1,6 +1,5 @@
 package springbook.user.dao;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -25,7 +24,7 @@ import springbook.user.domain.Level;
 import springbook.user.domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations= "/test-applicationContext.xml")
+@ContextConfiguration(locations="/test-applicationContext.xml")
 public class UserDaoTest {
     @Autowired UserDao dao;
     @Autowired DataSource dataSource;
@@ -137,7 +136,7 @@ public class UserDaoTest {
             SQLException sqlEx = (SQLException)ex.getCause();
             SQLExceptionTranslator set = new SQLErrorCodeSQLExceptionTranslator(this.dataSource);
             DataAccessException transEx = set.translate(null, null, sqlEx);
-            assertThat(transEx, instanceOf(DuplicateKeyException.class));
+            assertThat(transEx, is(DuplicateKeyException.class));
         }
     }
 
@@ -164,4 +163,3 @@ public class UserDaoTest {
     }
 
 }
-
