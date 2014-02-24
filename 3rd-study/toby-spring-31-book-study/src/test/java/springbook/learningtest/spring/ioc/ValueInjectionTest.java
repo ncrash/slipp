@@ -25,11 +25,11 @@ import org.springframework.core.io.ClassPathResource;
 
 
 public class ValueInjectionTest {
-    @Test @Ignore
+    @Test
     public void valueInjection() {
         AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(BeanSP.class, ConfigSP.class, DatabasePropertyPlaceHolder.class);
         BeanSP bean = ac.getBean(BeanSP.class);
-        assertThat(bean.name, is("Windows XP")); // OS에 맞게 수정해야 합니다.
+        assertThat(bean.name, is("Mac OS X")); // OS에 맞게 수정해야 합니다.
         assertThat(bean.username, is("Spring"));
 
         assertThat(bean.hello.name, is("Spring"));
