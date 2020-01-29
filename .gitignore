@@ -21,3 +21,6 @@ build
 #*.jar
 *.war
 *.ear
+
+# Etc Files #
+.envrc
